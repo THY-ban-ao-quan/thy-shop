@@ -5,8 +5,12 @@ class Account extends Model
        
     function CheckEmail($email)
     {
+        $result = 0;
         $query =  "SELECT email FROM nguoidung WHERE email = '$email'";
-        $result = $this->conn->query($query) -> num_rows;
+        if($this->conn->query($query)){
+            $result = $this->conn->query($query)->num_rows;
+        }
+        
         return $result == 1 ? "Email đã được sử dụng" : "";
     }
 
