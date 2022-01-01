@@ -20,7 +20,7 @@
       Thông tin cá nhân
     </a>
     <?php if(isset($_SESSION['isAdmin']) || isset($_SESSION['isEmployee'])) {?> 
-      <a class="" href="/">
+      <a class="" href="admin">
         <svg
           width="32"
           height="32"
