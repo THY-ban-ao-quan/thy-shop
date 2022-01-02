@@ -17,23 +17,23 @@
         <input type="hidden" class="form-control" id="" placeholder="" name="idND" value="<?= $data['idND']?>">
         <div class="form-group">
             <label for="">Họ tên</label>
-            <input type="text" class="form-control" id="" placeholder="" name="tenND" value="<?= $data['tenND']?>">
+            <input type="text" class="form-control" id="" placeholder="" name="tenND" value="<?= $data['tenND']?>" required>
         </div>
         <div class="form-group">
             <label for="">Số Điện Thoại</label>
-            <input type="text" class="form-control" id="" placeholder="" name="SDT" value="<?= $data['SDT']?>">
+            <input type="text" class="form-control" id="" placeholder="" name="SDT" value="<?= $data['SDT']?>" required pattern="[0-9]+" minlength="10">
         </div>
         <div class="form-group">
             <label for="">Email</label>
-            <input type="Email" class="form-control" id="" placeholder="" name="email" value="<?= $data['email']?>">
+            <input type="Email" class="form-control" id="" placeholder="" name="email" value="<?= $data['email']?>" required>
         </div>
         <div class="form-group">
             <label for="">Địa chỉ</label>
-            <input type="text" class="form-control" id="" placeholder="" name="diaChi" value="<?= $data['diaChi']?>">
+            <input type="text" class="form-control" id="" placeholder="" name="diaChi" value="<?= $data['diaChi']?>" required>
         </div>
         <div class="form-group">
             <label for="">Mật Khẩu</label>
-            <input type="Password" class="form-control" id="" placeholder="" name="matKhau" value="<?= $data['matKhau']?>">
+            <input type="Password" class="form-control" id="" placeholder="" name="matKhau" value="<?= $data['matKhau']?>" required required minlength="6">
         </div>                
         <div class="form-group">
             <label for="">Quyền</label>

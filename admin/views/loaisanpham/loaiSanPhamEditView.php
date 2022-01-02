@@ -17,7 +17,7 @@
     <input type="hidden" class="form-control" id="" placeholder="" name="idLSP" value="<?= $data['idLSP'] ?>">
     <div class="form-group">
         <label for="">Tên loại sản phẩm</label>
-        <input type="text" class="form-control" id="" placeholder="" name="tenLSP" value="<?= $data['tenLSP'] ?>">
+        <input type="text" class="form-control" id="" placeholder="" name="tenLSP" value="<?= $data['tenLSP'] ?>" required>
     </div>
     <div class="form-group">
         <label for="">Danh mục sản phẩm</label>

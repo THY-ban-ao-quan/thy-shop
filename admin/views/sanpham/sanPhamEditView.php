@@ -39,7 +39,7 @@
                 <input type="hidden" class="form-control" id="" placeholder="" name="idSP" value="<?= $sanPham['idSP'] ?>">
                 <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="" placeholder="" name="tenSP" value="<?= $sanPham['tenSP'] ?>">
+                    <input type="text" class="form-control" id="" placeholder="" name="tenSP" value="<?= $sanPham['tenSP'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="cars">Danh mục: </label>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Đơn giá</label>
-                    <input type="text" class="form-control" id="" placeholder="" name="donGia" value="<?= $sanPham['donGia'] ?>">
+                    <input type="text" class="form-control" id="" placeholder="" name="donGia" value="<?= $sanPham['donGia'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="">Mùa</label>
@@ -84,7 +84,7 @@
                         <?php
                             $data = array('Đen', 'Trắng','Hồng');
                             foreach ($data as $key) { ?>
-                                <input <?= $sp_controller->kiemTraMau($sanPham['idSP'],$key) ?'checked':''?> 
+                                <input <?= $sp_controller->kiemTraMauDaChon($sanPham['idSP'],$key) ?'checked':''?> 
                                 type="checkbox" name="mau[]" value="<?= $key ?>">&nbsp;&nbsp;<?= $key ?> &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php       
                                 }

@@ -79,23 +79,104 @@
                 }
             }
 
-            
+            //lấy màu đã có của sản phẩm
+            $listmau = $this->sp_model->getMauByIdSP($data['idSP']);
+            //thêm màu chưa có
             if(isset($_POST['mau'])){
-                //echo '<script>alert("'.$_POST['mau'].'")</script>';
                 foreach ($_POST['mau'] as $value) {
-                    $arrayMau = array(
+                    //kiểm tra màu được chọn đã có trong csdl chưa
+                    $kt = $this->kiemTraMau($data['idSP'],$value);
+                    if(!$kt){
+                        $arrayMau = array(
                         'idSP' => $_POST['idSP'],
-                        'mau' => $value
-                    );
-                    foreach ($arrayMau as $key => $value) {
-                        if (strpos($value, "'") != false) {
-                            $value = str_replace("'", "\'", $value);
-                            $arrayMau[$key] = $value;
+                        'mau' => $value,
+                        'trangThai' => 1
+                        );
+                        foreach ($arrayMau as $key => $value) {
+                            if (strpos($value, "'") != false) {
+                                $value = str_replace("'", "\'", $value);
+                                $arrayMau[$key] = $value;
+                            }
+                        }
+                        $this->sp_model->insertSizeMau($arrayMau);
+                    }
+                    
+                    
+                }
+
+                
+                $strMau = "";
+                if(isset($_POST['mau'])){
+                    foreach ($_POST['mau'] as $value) {
+                        $strMau .= " ". $value; //gộp màu thành chuỗi
+                    }
+
+                    //bỏ màu đã có
+                    //kiểm tra màu đã có có trong chuỗi màu đã chọn không
+                    foreach($listmau as $mau){
+                        if(!str_contains($strMau,$mau['mau'])){
+                            $arrayMau = array(
+                            'idSP' => $_POST['idSP'],
+                            'mau' => $mau['mau'],
+                            'trangThai' => 0
+                            );
+                            foreach ($arrayMau as $key => $value) {
+                                if (strpos($value, "'") != false) {
+                                    $value = str_replace("'", "\'", $value);
+                                    $arrayMau[$key] = $value;
+                                }
+                            }
+                            $this->sp_model->updateSizeMau($arrayMau);
                         }
                     }
-                    $this->sp_model->insertSizeMau($arrayMau);
+
+                    //chọn lại màu đã có
+                    foreach($listmau as $mau){
+                        if($mau['trangThai']==0){
+                            if(str_contains($strMau,$mau['mau'])){
+                                $arrayMau = array(
+                                'idSP' => $_POST['idSP'],
+                                'mau' => $mau['mau'],
+                                'trangThai' => 1
+                                );
+                                foreach ($arrayMau as $key => $value) {
+                                    if (strpos($value, "'") != false) {
+                                        $value = str_replace("'", "\'", $value);
+                                        $arrayMau[$key] = $value;
+                                    }
+                                }
+                                $this->sp_model->updateSizeMau($arrayMau);
+                            }
+                        }
+                        
+                    }
                 }
                 
+                //bỏ tất cả
+                if(count($_POST['mau'])==0){
+                    if($mau['trangThai']==1){
+                            if(str_contains($strMau,$mau['mau'])){
+                                $arrayMau = array(
+                                'idSP' => $_POST['idSP'],
+                                'mau' => $mau['mau'],
+                                'trangThai' => 0
+                                );
+                                foreach ($arrayMau as $key => $value) {
+                                    if (strpos($value, "'") != false) {
+                                        $value = str_replace("'", "\'", $value);
+                                        $arrayMau[$key] = $value;
+                                    }
+                                }
+                                $this->sp_model->updateSizeMau($arrayMau);
+                            }
+                        }
+                }
+                
+
+                
+
+                
+
             }
             $rs = $this->sp_model->update($data);
             if ($rs == true) {
@@ -115,6 +196,11 @@
 
         public function kiemTraMau($idSP, $mau){
             return $this->sp_model->kiemTraMau($idSP,$mau);
+        }
+
+        public function kiemTraMauDaChon($idSP, $mau)
+        {
+            return $this->sp_model->kiemTraMauDaChon($idSP,$mau);
         }
 
         

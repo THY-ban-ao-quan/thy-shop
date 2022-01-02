@@ -36,7 +36,7 @@
             <form action="?mod=sanpham&act=addCSDL" method="POST" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="" placeholder="" name="tenSP">
+                    <input type="text" class="form-control" id="" placeholder="" name="tenSP" required>
                 </div>
                 <div class="form-group">
                     <label for="cars">Danh mục: </label>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Đơn giá</label>
-                    <input type="text" class="form-control" id="" placeholder="" name="donGia">
+                    <input type="text" class="form-control" id="" placeholder="" name="donGia" required>
                 </div>
                 <div class="form-group">
                     <label for="">Mùa</label>

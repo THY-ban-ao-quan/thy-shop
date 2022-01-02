@@ -10,10 +10,10 @@
 <br>
 
 <form action="?mod=danhmuc&act=editCSDL" method="POST" role="form" enctype="multipart/form-data">
-    <input type="hidden" class="form-control" id="" placeholder="" name="idDM" value="<?= $data['idDM'] ?>">
+    <input type="hidden" class="form-control" id="" placeholder="" name="idDM" value="<?= $data['idDM'] ?>" >
     <div class="form-group">
         <label for="">Tên danh mục sản phẩm</label>
-        <input type="text" class="form-control" id="" placeholder="" name="tenDM" value="<?= $data['tenDM'] ?>">
+        <input type="text" class="form-control" id="" placeholder="" name="tenDM" value="<?= $data['tenDM'] ?>" required>
     </div>
     
     <button type="submit" class="btn btn-primary">Update</button>

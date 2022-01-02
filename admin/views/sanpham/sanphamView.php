@@ -49,7 +49,7 @@
         <tr>
             <td><?= $row['idSP'] ?></td>
             <td><?= $row['tenSP'] ?></td>
-            <td><?= $row['donGia'] ?></td>
+            <td><?= number_format($row['donGia'], 0) ." VNĐ";  ?></td>
             <td><?= $row['mua'] ?></td>
             <td><?= $dm_controller->getTenDM($lsp_controller->getIdDanhmuc((int)$row['idLSP'])) ?></td>
             <td><?= $lsp_controller->getTenLoaiSanPham((int)$row['idLSP']) ?></td>

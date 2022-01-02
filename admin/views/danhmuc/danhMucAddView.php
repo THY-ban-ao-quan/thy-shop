@@ -7,7 +7,7 @@
 <form action="?mod=danhmuc&act=addCSDL" method="POST" role="form" enctype="multipart/form-data">
     <div class="form-group">
         <label for="">Tên danh mục sản phẩm</label>
-        <input type="text" class="form-control" id="" placeholder="" name="tenDM">
+        <input type="text" class="form-control" id="" placeholder="" name="tenDM" required>
     </div>
     
     <button type="submit" class="btn btn-primary">Create</button>
