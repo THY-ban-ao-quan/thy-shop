@@ -32,7 +32,6 @@
                 }
             }
             $this->dm_model->add($data);
-            require_once('./views/danhmuc/danhMucView.php');
         }
 
         public function update(){
@@ -84,4 +83,3 @@
             return $this->dm_model->getDanhMucById($idDM);
         }
     }
-?>
