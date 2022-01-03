@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop THY</title>
-     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Required Core stylesheet -->
+    <link rel="stylesheet" href="./assets/js/node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+
+    <!-- Optional Theme stylesheet -->
+    <link rel="stylesheet" href="./assets/js/node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
   </head>
   <body>
     <main id="root" class="home">
@@ -18,6 +24,8 @@
         require_once("user/userContainer.php");
         // MINI CART 
         require_once("cart/miniCartContainer.php");
+        // BANNER
+        require_once("banner/banner.php");
         // FOOTER
         require_once("header_footer/footer.php");   
         // MODAL
@@ -29,5 +37,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--===== MAIN JS =====-->
     <script type="module" src="./assets/js/app.js"></script>
+    <!--===== GLIDE SLIDER =====-->
+    <script src="./assets/js/node_modules/@glidejs/glide/dist/glide.min.js"></script>
+    <script src="./assets/js/glide.js" ></script>
   </body>
 </html>
