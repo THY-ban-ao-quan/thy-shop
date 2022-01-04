@@ -7,6 +7,9 @@
     <title>Shop THY</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
 
+    <!-- box icon -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
     <!-- Required Core stylesheet -->
     <link rel="stylesheet" href="./assets/js/node_modules/@glidejs/glide/dist/css/glide.core.min.css">
 
@@ -26,6 +29,12 @@
         require_once("cart/miniCartContainer.php");
         // BANNER
         require_once("banner/banner.php");
+        // NEW PRODUCTS
+        require_once("sections/newProducts.php");
+        // SEASON
+        require_once("sections/season.php");
+        // FEATURED PRODUCTS
+        require_once("sections/featuredProducts.php");
         // FOOTER
         require_once("header_footer/footer.php");   
         // MODAL

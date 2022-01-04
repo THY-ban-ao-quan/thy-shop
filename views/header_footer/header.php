@@ -19,7 +19,7 @@
     </div>
 
     <div class="nav__logo">
-      <a href="/"> THY </a>
+      <a href="."> THY </a>
     </div>
 
     <div class="nav__left">
