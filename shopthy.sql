@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 03, 2022 lúc 12:13 PM
+-- Thời gian đã tạo: Th1 04, 2022 lúc 08:56 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `shopthy`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL,
+  `banner` varchar(255) NOT NULL,
+  `trangThai` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -326,6 +338,12 @@ INSERT INTO `size_mau` (`idSM`, `idSP`, `size`, `mau`, `soLuong`, `trangThai`) V
 --
 
 --
+-- Chỉ mục cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `blog`
 --
 ALTER TABLE `blog`
@@ -479,6 +497,12 @@ ALTER TABLE `size_mau`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`id`) REFERENCES `khuyenmai` (`idKM`);
 
 --
 -- Các ràng buộc cho bảng `blog`

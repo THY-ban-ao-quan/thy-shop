@@ -24,8 +24,9 @@
 
     <div class="nav__left">
       <div class="nav__left-items">
-        <a href="/">nam</a>
-        <a href="/">nữ</a>
+         <?php foreach ($menu as $item) : ?> 
+            <a href="/"><?php echo $item['tenDM'];?></a>
+          <?php endforeach; ?> 
         <a href="/">blog</a>
       </div>
     </div>
@@ -97,8 +98,9 @@
       </div>
     </div>
     <div class="nav__mobile">
-      <a class="" href="/">nam</a>
-      <a class="" href="/">nữ</a>
+      <?php foreach ($menu as $item) : ?> 
+          <a href="/"><?php echo $item['tenDM'];?></a>
+      <?php endforeach; ?> 
       <a class="" href="/">Blog</a>
       <?php if(isset($_SESSION['login'])) {?> 
         <a class="" href="/">Thông tin cá nhân</a>
@@ -115,7 +117,4 @@
       <h2>THY - Thời trang hiện đại®</h2>
     </div>
   </div>
-  <!-- <div class="freeship fade-in" style="display: none">
-    Miễn phí vận chuyển với đơn hàng từ 599.000đ
-  </div> -->
 </header>

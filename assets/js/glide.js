@@ -1,4 +1,4 @@
 new Glide(".glide.home-banner", {
-  autoplay: 2400,
+  autoplay: 3000,
   hoverpause: true,
 }).mount();
