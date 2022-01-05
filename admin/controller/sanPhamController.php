@@ -85,83 +85,22 @@ class sanPhamController
 
         //kiểm tra đã chọn size chưa
         foreach ($_POST['mau'] as $value) {
-            $ten = $value . "_size";
+            $ten = str_replace(" ", "_", $value) . "_size";
             if (empty($_POST[$ten])) {
                 setcookie('msgsize', 'Vui lòng chọn size', time() + 2);
                 header('Location: ?mod=sanpham&act=edit&id=' . $_POST['idSP']);
                 return;
             }
         }
-        //thêm màu chưa có
-        // if (isset($_POST['mau'])) {
 
-        //     foreach ($_POST['mau'] as $value) {
-        //         //kiểm tra màu được chọn đã có trong csdl chưa
-        //         $kt = $this->kiemTraMau($data['idSP'], $value);
-        //         if (!$kt) {
-        //             $arrayMau = array(
-        //                 'idSP' => $_POST['idSP'],
-        //                 'mau' => $value,
-        //                 'trangThai' => 1
-        //             );
-        //             foreach ($arrayMau as $key => $value) {
-        //                 if (strpos($value, "'") != false) {
-        //                     $value = str_replace("'", "\'", $value);
-        //                     $arrayMau[$key] = $value;
-        //                 }
-        //             }
-        //             $this->sp_model->insertSizeMau($arrayMau);
-        //         }
-        //     }
-        // }
-
-        // //lấy màu đã có của sản phẩm
-        // $listmau = $this->sp_model->getMauByIdSP($data['idSP']);
-        // //đổi toàn bộ thành trạng thái 0
-        // foreach ($listmau as $value) {
-        //     $arrayMau = array(
-        //         'idSP' => $_POST['idSP'],
-        //         'mau' => $value['mau'],
-        //         'trangThai' => 0
-        //     );
-        //     foreach ($arrayMau as $key => $value) {
-        //         if (strpos($value, "'") != false) {
-        //             $value = str_replace(
-        //                 "'",
-        //                 "\'",
-        //                 $value
-        //             );
-        //             $arrayMau[$key] = $value;
-        //         }
-        //     }
-        //     $this->sp_model->updateSizeMau($arrayMau);
-        // }
-
-        // //đổi trạng thái thành 1
-        // foreach ($_POST['mau'] as $value) {
-        //     $arrayMau = array(
-        //         'idSP' => $_POST['idSP'],
-        //         'mau' => $value,
-        //         'trangThai' => 1
-        //     );
-        //     foreach ($arrayMau as $key => $value) {
-        //         if (strpos($value, "'") != false) {
-        //             $value = str_replace(
-        //                 "'",
-        //                 "\'",
-        //                 $value
-        //             );
-        //             $arrayMau[$key] = $value;
-        //         }
-        //     }
-        //     $this->sp_model->updateSizeMau($arrayMau);
-        // }
 
         //thêm size cho từng màu
         foreach ($_POST['mau'] as $mau) {
-            $ten = $mau . "_size";
+
+            $ten = str_replace(" ", "_", $mau) . "_size";
+
             if (empty($_POST[$ten])) {
-                setcookie('msgsize', 'Vui lòng chọn size', time() + 2);
+                setcookie('msgsize', 'Vui lòng chọn size 1' . $ten, time() + 2);
                 header('Location: ?mod=sanpham&act=edit&id=' . $_POST['idSP']);
                 return;
             }
@@ -234,12 +173,12 @@ class sanPhamController
                 $this->sp_model->updateSizeMau($arrayMau);
             }
             //upload ảnh
-            $bienAnh = $_POST['idSP'] . "_" . $mau . "_img_file";
+            $bienAnh = $_POST['idSP'] . "_" . str_replace(" ", "_", $mau) . "_img_file";
             if (!empty($_FILES[$bienAnh]['name'])) {
                 foreach ($_FILES[$bienAnh]['name'] as $name => $value) {
                     $name_img = stripslashes($_FILES[$bienAnh]['name'][$name]);
                     $source_img = $_FILES[$bienAnh]['tmp_name'][$name];
-                    $path_img = "upload/" . $name_img;
+                    $path_img = "../assets/img/products/" . $name_img;
                     move_uploaded_file($source_img, $path_img);
 
                     //insert anh
