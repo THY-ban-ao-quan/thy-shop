@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 04, 2022 lúc 08:56 AM
+-- Thời gian đã tạo: Th1 05, 2022 lúc 11:03 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -32,6 +32,14 @@ CREATE TABLE `banner` (
   `banner` varchar(255) NOT NULL,
   `trangThai` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `banner`
+--
+
+INSERT INTO `banner` (`id`, `banner`, `trangThai`) VALUES
+(1, 'banner_1.jpeg', '1'),
+(2, 'banner_2.jpeg', '1');
 
 -- --------------------------------------------------------
 
@@ -146,6 +154,14 @@ CREATE TABLE `khuyenmai` (
   `phanTram` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `khuyenmai`
+--
+
+INSERT INTO `khuyenmai` (`idKM`, `tenKM`, `ngayBD`, `ngayKT`, `phanTram`) VALUES
+(1, 'Giảm giá giáng sinh', '2021-12-15', '2021-12-24', 20),
+(2, 'Tết', '2022-01-01', '2021-01-07', 15);
+
 -- --------------------------------------------------------
 
 --
@@ -155,7 +171,7 @@ CREATE TABLE `khuyenmai` (
 CREATE TABLE `loaisanpham` (
   `idLSP` int(11) NOT NULL,
   `tenLSP` varchar(200) NOT NULL,
-  `trangThai` varchar(200) NOT NULL,
+  `trangThai` char(1) NOT NULL,
   `idDM` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -171,7 +187,8 @@ INSERT INTO `loaisanpham` (`idLSP`, `tenLSP`, `trangThai`, `idDM`) VALUES
 (5, 'áo khoác nữ', '1', 2),
 (6, 'Áo khoácccc', '0', 1),
 (7, 'áo khoác nữ', '0', 1),
-(8, 'quần jeans', '0', 1);
+(8, 'quần jeans', '0', 1),
+(9, 'ÁO BLAZER & ÁO KHOÁC', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -188,8 +205,14 @@ CREATE TABLE `mau` (
 --
 
 INSERT INTO `mau` (`mau`) VALUES
+('Ghi xám'),
 ('Hồng'),
+('Nâu'),
+('Nâu nhạt'),
 ('trắng'),
+('Trắng be'),
+('Trắng xám'),
+('Xanh rêu'),
 ('Đen');
 
 -- --------------------------------------------------------
@@ -215,7 +238,7 @@ CREATE TABLE `nguoidung` (
 --
 
 INSERT INTO `nguoidung` (`idND`, `tenND`, `SDT`, `email`, `diaChi`, `matKhau`, `trangThai`, `idQuyen`, `maPX`) VALUES
-(1, 'Đặng Văn Thiện', '', 'admin@gmail.com', '', 'c56d0e9a7ccec67b4ea131655038d604', 1, 1, NULL),
+(1, 'Đặng Văn Thiện', '', 'admin@gmail.com', '', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, NULL),
 (3, 'Nguyen An', NULL, 'an123@gmail.com', NULL, 'e10adc3949ba59abbe56e057f20f883e', 1, 3, NULL),
 (4, 'Kim Nhung', NULL, 'kimnhung@gmail.com', NULL, 'c33367701511b4f6020ec61ded352059', 1, 3, NULL),
 (5, 'Đặng Văn Thiện', NULL, 'thiendang201@gmail.com', NULL, '96e79218965eb72c92a549dd5a330112', 1, 3, NULL),
@@ -268,7 +291,12 @@ INSERT INTO `sanpham` (`idSP`, `tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `i
 (37, 'trà chanhmmm', '30000', 'T', '', '0', 3),
 (38, 'quần jeans đen', '350000', 'H', '', '1', 4),
 (39, 'cocaa', '30000', 'X', '', '0', 3),
-(40, 'áo', '10000', 'H', '', '1', 3);
+(40, 'áo', '10000', 'H', '', '1', 3),
+(41, 'Arthur Jacket', '1099000', 'Đ', 'Mô tả', '1', 9),
+(42, 'Prince Blazer', '1199000', 'Đ', 'Mô tả', '1', 9),
+(43, 'Win Coat 2021', '1199000', 'Đ', 'Mô tả', '1', 9),
+(44, 'SSS.Cable-Knit Jacket', '899000', 'Đ', 'Mô tả', '1', 9),
+(45, 'Uk Rain Coat', '1199000', 'Đ', 'Mô tả', '1', 9);
 
 -- --------------------------------------------------------
 
@@ -465,10 +493,16 @@ ALTER TABLE `hinhanh`
   MODIFY `idAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
+-- AUTO_INCREMENT cho bảng `khuyenmai`
+--
+ALTER TABLE `khuyenmai`
+  MODIFY `idKM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
-  MODIFY `idLSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idLSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `nguoidung`
@@ -486,7 +520,7 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `idSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT cho bảng `size_mau`
