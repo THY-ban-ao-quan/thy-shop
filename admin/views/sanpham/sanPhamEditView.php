@@ -157,14 +157,14 @@ $sanPham = $sp_controller->getSanPhamById($idSP);
                 }
                 foreach ($data as $key) {
                     $ktChon = $sp_controller->kiemTraMauDaChon($sanPham['idSP'], $key); ?>
-                    <input <?= $ktChon ? 'checked' : '' ?> type="checkbox" class="btn btn-primary <?= $ktChon ? '' : 'collapsed' ?>" data-toggle="collapse" href="#<?= $key ?>" role="button" aria-expanded="<?= $ktChon ? 'true' : 'false' ?>" aria-controls="<?= $key ?>" name="mau[]" value="<?= $key ?>">
+                    <input <?= $ktChon ? 'checked' : '' ?> type="checkbox" class="btn btn-primary <?= $ktChon ? '' : 'collapsed' ?>" data-toggle="collapse" href="#<?= str_replace(" ", "_", $key)  ?>" role="button" aria-expanded="<?= $ktChon ? 'true' : 'false' ?>" aria-controls="<?= str_replace(" ", "_", $key) ?>" name="mau[]" value="<?= $key ?>">
                     &nbsp;&nbsp;<?= $key ?>
                     &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                     <div class="row">
                         <div class="col">
-                            <div class="collapse multi-collapse <?= $ktChon ? 'show' : '' ?>" id="<?= $key ?>">
+                            <div class="collapse multi-collapse <?= $ktChon ? 'show' : '' ?>" id="<?= str_replace(" ", "_", $key) ?>">
                                 <div class=" card-body">
                                     <label for="">Size của màu <?= $key ?></label>
                                     <?php
@@ -181,7 +181,7 @@ $sanPham = $sp_controller->getSanPhamById($idSP);
                                             echo '<br><br>';
                                         } ?>
 
-                                        <input <?= $ktSize ? 'checked' : '' ?> type="checkbox" name="<?= $key ?>_size[]" value="<?= $i ?>">
+                                        <input <?= $ktSize ? 'checked' : '' ?> type="checkbox" name="<?= str_replace(" ", "_", $key) ?>_size[]" value="<?= $i ?>">
                                         &nbsp;&nbsp;<?= $i ?>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <?php } ?>
@@ -196,12 +196,12 @@ $sanPham = $sp_controller->getSanPhamById($idSP);
                                     }
                                     foreach ($listAnh as $anh) {
                                     ?>
-                                        <img style="width: 150px; height: 150px;" src="upload/<?= $anh['linkAnh'] ?>">
+                                        <img style="width: 150px; height: 150px;" src="../assets/img/products/<?= $anh['linkAnh'] ?>">
                                     <?php
                                     }
                                     ?>
 
-                                    <?php $idAnh = $sanPham['idSP'] . "_" . $key ?>
+                                    <?php $idAnh = $sanPham['idSP'] . "_" . str_replace(" ", "_", $key) ?>
                                     <div class="form-group" id="formUpload<?= $idAnh ?>">
                                         <label>Chọn ảnh</label><br>
 

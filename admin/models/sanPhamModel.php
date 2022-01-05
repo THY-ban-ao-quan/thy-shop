@@ -31,13 +31,13 @@ class sanPhamModel extends Model
         $v = trim($v, ",");
         $query = "INSERT INTO sanpham($f) VALUES ($v);";
         $rs = $this->conn->query($query);
-        if ($rs == true) {
-            setcookie('msg', 'Thêm mới thành công', time() + 2);
-            header('Location: ?mod=sanpham');
-        } else {
-            setcookie('msg', 'Thêm mới không thành công', time() + 2);
-            header('Location: ?mod=sanpham&act=add');
-        }
+        // if ($rs == true) {
+        //     setcookie('msg', 'Thêm mới thành công', time() + 2);
+        //     header('Location: ?mod=sanpham');
+        // } else {
+        //     setcookie('msg', 'Thêm mới không thành công', time() + 2);
+        //     header('Location: ?mod=sanpham&act=add');
+        // }
     }
 
     //lấy sản phẩm theo id
