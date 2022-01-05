@@ -32,7 +32,83 @@ class sanPhamController
                 $data[$key] = $value;
             }
         }
+        //chèn thông tin sp trước để lấy id
         $this->sp_model->add($data);
+        $l = $this->getAllSanPham();
+        $idSP = "";
+        for ($i = count($l) - 1; $i >= 0; $i++) {
+            $idSP = $l[$i]['idSP'];
+            break;
+        }
+
+        //kiểm tra đã chọn size chưa
+        foreach ($_POST['mau'] as $value) {
+            $ten = str_replace(" ", "_", $value) . "_size";
+
+            if (empty($_POST[$ten])) {
+                setcookie('msgsize', 'Vui lòng chọn size', time() + 2);
+                header('Location: ?mod=sanpham&act=add');
+                return;
+            }
+        }
+
+        foreach ($_POST['mau'] as $mau) {
+
+            $ten = str_replace(" ", "_", $mau) . "_size";
+
+            foreach ($_POST[$ten] as $size) {
+
+                $arrayMau = array(
+                    'idSP' => $idSP,
+                    'mau' => $mau,
+                    'size' => $size,
+                    'trangThai' => 1
+                );
+                foreach ($arrayMau as $key => $value) {
+                    if (strpos($value, "'") != false) {
+                        $value = str_replace(
+                            "'",
+                            "\'",
+                            $value
+                        );
+                        $arrayMau[$key] = $value;
+                    }
+                }
+                $this->sp_model->insertSizeMau($arrayMau);
+            }
+
+            //upload ảnh
+            $bienAnh = str_replace(" ", "_", $mau) . "_img_file";
+
+            if (!empty($_FILES[$bienAnh]['name'])) {
+                foreach ($_FILES[$bienAnh]['name'] as $name => $value) {
+                    $name_img = stripslashes($_FILES[$bienAnh]['name'][$name]);
+                    $source_img = $_FILES[$bienAnh]['tmp_name'][$name];
+                    $path_img = "../assets/img/products/" . $name_img;
+                    move_uploaded_file($source_img, $path_img);
+
+                    //insert anh
+
+                    if (!empty($name_img)) {
+                        $listAnh = array(
+                            'linkAnh' => $name_img,
+                            'idSP'  => $idSP,
+                            'mau' => $mau
+                        );
+                        foreach ($listAnh as $key => $value) {
+                            if (strpos($value, "'") != false) {
+                                $value = str_replace("'", "\'", $value);
+                                $listAnh[$key] = $value;
+                            }
+                        }
+                        $this->sp_model->insertAnh($listAnh);
+                    }
+                }
+            }
+        }
+
+
+
         require_once('./views/sanpham/sanPhamView.php');
     }
 
@@ -100,7 +176,7 @@ class sanPhamController
             $ten = str_replace(" ", "_", $mau) . "_size";
 
             if (empty($_POST[$ten])) {
-                setcookie('msgsize', 'Vui lòng chọn size 1' . $ten, time() + 2);
+                setcookie('msgsize', 'Vui lòng chọn size', time() + 2);
                 header('Location: ?mod=sanpham&act=edit&id=' . $_POST['idSP']);
                 return;
             }
