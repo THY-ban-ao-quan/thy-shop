@@ -10,6 +10,8 @@ class HomeController
     
     function Index()
     {
+        $banners = $this->home_model->LoadBanners();
+        $menu = $this->home_model->LoadMenu();
         require_once('Views/index.php');
     }
 }
