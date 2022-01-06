@@ -66,7 +66,7 @@ const app = (function () {
       options2,
       "seasonalProducts"
     );
-    section.toggleGenderBtn(
+    section.toggleGenderBtn2(
       ".featured__section .gender__toggle button",
       ".featured__section .featured__list",
       "featuredProducts"
