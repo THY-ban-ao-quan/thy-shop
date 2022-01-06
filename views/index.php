@@ -43,11 +43,13 @@
     </main>
 
     <!--===== JQUERY =====-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!--===== MAIN JS =====-->
-    <script type="module" src="./assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
     <!--===== GLIDE SLIDER =====-->
     <script src="./assets/js/node_modules/@glidejs/glide/dist/glide.min.js"></script>
     <script src="./assets/js/glide.js" ></script>
+    <!--===== NUMERAL =====-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <!--===== MAIN JS =====-->
+    <script type="module" src="./assets/js/app.js"></script>
   </body>
 </html>

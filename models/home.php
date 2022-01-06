@@ -11,4 +11,71 @@ class Home extends Model
         $query = "SELECT * FROM danhmuc WHERE trangthai = '1'";
         return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
     }
+
+    function NewProducts($limit, $dm) {
+        $query = "SELECT
+            sp.idSP,
+            tenSP,
+            donGia,
+            hinhanh.linkAnh,
+            slm.slMau
+        FROM
+            sanpham sp
+        JOIN hinhanh ON sp.idSP = hinhanh.idSP
+        JOIN (SELECT m.idSP, COUNT(m.mau) as slMau FROM (SELECT DISTINCT idSP, mau FROM size_mau) as m GROUP BY m.idSP) slm
+        ON slm.idSP = sp.idSP
+        JOIN loaisanpham l ON l.idLSP = sp.idLSP
+        WHERE l.idDM = $dm
+        GROUP BY sp.idSP
+        ORDER BY sp.idSP DESC
+        LIMIT $limit";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function SeasonalProducts($limit, $dm, $season) {
+        $query = "SELECT
+            sp.idSP,
+            tenSP,
+            donGia,
+            hinhanh.linkAnh,
+            slm.slMau
+        FROM
+            sanpham sp
+        JOIN hinhanh ON sp.idSP = hinhanh.idSP
+        JOIN (SELECT m.idSP, COUNT(m.mau) as slMau FROM (SELECT DISTINCT idSP, mau FROM size_mau) as m GROUP BY m.idSP) slm
+        ON slm.idSP = sp.idSP
+        JOIN loaisanpham l ON l.idLSP = sp.idLSP
+        WHERE l.idDM = $dm
+        AND sp.mua = '$season'
+        GROUP BY sp.idSP
+        ORDER BY RAND()
+        LIMIT $limit";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function FeaturedProducts($rank, $dm) {
+        $query = "SELECT
+            sp.idSP,
+            tenSP,
+            donGia,
+            hinhanh.linkAnh,
+            slm.slMau
+        FROM
+            sanpham sp
+        JOIN hinhanh ON sp.idSP = hinhanh.idSP
+        JOIN (SELECT m.idSP, COUNT(m.mau) as slMau FROM (SELECT DISTINCT idSP, mau FROM size_mau) as m GROUP BY m.idSP) slm
+        ON slm.idSP = sp.idSP
+        JOIN loaisanpham l ON l.idLSP = sp.idLSP
+        JOIN size_mau sm on sm.idSP = sp.idSP
+        JOIN chitietdonhang ct on ct.idSM = sm.idSM
+        WHERE l.idDM = $dm
+        AND ct.idSM IN (
+            SELECT idSM FROM (
+                SELECT (DENSE_RANK() OVER (ORDER BY  sum(soLuong) DESC)) rank, idSM, sum(soLuong) FROM `chitietdonhang`
+                GROUP BY idSM
+                ORDER BY sum(soLuong) DESC) hot
+            WHERE hot.rank <= $rank)
+        GROUP BY sp.idSP";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
 }

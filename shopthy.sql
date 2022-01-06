@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 05, 2022 lúc 11:03 AM
+-- Thời gian đã tạo: Th1 06, 2022 lúc 02:57 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -66,8 +66,18 @@ CREATE TABLE `chitietdonhang` (
   `idSM` int(11) NOT NULL,
   `soLuong` int(11) NOT NULL,
   `giaBan` decimal(10,0) NOT NULL,
-  `phanTramKM` double NOT NULL
+  `phanTramKM` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
+INSERT INTO `chitietdonhang` (`idDH`, `idSM`, `soLuong`, `giaBan`, `phanTramKM`) VALUES
+(1, 126, 2, '1099000', NULL),
+(1, 131, 3, '1199000', NULL),
+(1, 140, 1, '899000', NULL),
+(2, 136, 3, '1199000', NULL);
 
 -- --------------------------------------------------------
 
@@ -113,9 +123,17 @@ INSERT INTO `danhmuc` (`idDM`, `tenDM`, `trangThai`) VALUES
 CREATE TABLE `donhang` (
   `idDH` int(11) NOT NULL,
   `idKH` int(11) NOT NULL,
-  `ngayDatHang` date NOT NULL,
+  `ngayDatHang` datetime NOT NULL DEFAULT current_timestamp(),
   `tinhTrang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`idDH`, `idKH`, `ngayDatHang`, `tinhTrang`) VALUES
+(1, 4, '2022-01-06 18:17:04', 1),
+(2, 5, '2022-01-06 18:17:04', 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +156,30 @@ INSERT INTO `hinhanh` (`idAnh`, `linkAnh`, `idSP`, `mau`) VALUES
 (18, 'huyen-thoai-ve-cac-chom-sao-267272.jpg', 40, 'Đen'),
 (19, 'huyen-thoai-ve-cac-chom-sao-267272.jpg', 40, 'Trắng'),
 (20, 'c.jpg', 40, 'Đen'),
-(21, 'tempsnip.png', 40, 'Đen');
+(21, 'tempsnip.png', 40, 'Đen'),
+(22, 'athur-jacket.jpeg', 41, 'Ghi xám'),
+(23, 'athur-jacket-xam1.jpeg', 41, 'Ghi xám'),
+(24, 'athur-jacket-xam2.jpeg', 41, 'Ghi xám'),
+(25, 'athur-jacket-xam3.jpeg', 41, 'Ghi xám'),
+(26, 'athur-jacket-xanh-reu.jpeg', 41, 'Xanh rêu'),
+(27, 'athur-jacket-xanh-reu-1.jpeg', 41, 'Xanh rêu'),
+(28, 'athur-jacket-xanh-reu-2.jpeg', 41, 'Xanh rêu'),
+(29, 'athur-jacket-xanh-reu-3.jpeg', 41, 'Xanh rêu'),
+(30, 'PRINCE-BLAZER.jpeg', 42, 'Nâu nhạt'),
+(31, 'PRINCE-BLAZER-2.jpeg', 42, 'Nâu nhạt'),
+(32, 'PRINCE-BLAZER-3.jpeg', 42, 'Nâu nhạt'),
+(33, 'Win-Coat-2021.jpeg', 43, 'Nâu'),
+(34, 'Win-Coat-2021-1.jpeg', 43, 'Nâu'),
+(35, 'Win-Coat-2021-2.jpeg', 43, 'Nâu'),
+(36, 'Win-Coat-2021-3.jpeg', 43, 'Nâu'),
+(37, 'SSS.CABLE-KNIT-JACKET.jpeg', 44, 'Trắng be'),
+(38, 'SSS.CABLE-KNIT-JACKET-1.jpeg', 44, 'Trắng be'),
+(39, 'SSS.CABLE-KNIT-JACKET-2.jpeg', 44, 'Trắng be'),
+(40, 'SSS.CABLE-KNIT-JACKET-3.jpeg', 44, 'Trắng be'),
+(41, 'Uk-Rain-Coat.jpeg', 45, 'Trắng xám'),
+(42, 'Uk-Rain-Coat-2.jpeg', 45, 'Trắng xám'),
+(43, 'Uk-Rain-Coat-3.jpeg', 45, 'Trắng xám'),
+(44, 'Uk-Rain-Coat-4.jpeg', 45, 'Trắng xám');
 
 -- --------------------------------------------------------
 
@@ -292,11 +333,11 @@ INSERT INTO `sanpham` (`idSP`, `tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `i
 (38, 'quần jeans đen', '350000', 'H', '', '1', 4),
 (39, 'cocaa', '30000', 'X', '', '0', 3),
 (40, 'áo', '10000', 'H', '', '1', 3),
-(41, 'Arthur Jacket', '1099000', 'Đ', 'Mô tả', '1', 9),
-(42, 'Prince Blazer', '1199000', 'Đ', 'Mô tả', '1', 9),
-(43, 'Win Coat 2021', '1199000', 'Đ', 'Mô tả', '1', 9),
-(44, 'SSS.Cable-Knit Jacket', '899000', 'Đ', 'Mô tả', '1', 9),
-(45, 'Uk Rain Coat', '1199000', 'Đ', 'Mô tả', '1', 9);
+(41, 'Arthur Jacket', '1099000', 'D', '', '1', 9),
+(42, 'Prince Blazer', '1199000', 'D', '', '1', 9),
+(43, 'Win Coat 2021', '1199000', 'D', '', '1', 9),
+(44, 'SSS.Cable-Knit Jacket', '899000', 'D', '', '1', 9),
+(45, 'Uk Rain Coat', '1199000', 'D', '', '1', 9);
 
 -- --------------------------------------------------------
 
@@ -359,7 +400,27 @@ INSERT INTO `size_mau` (`idSM`, `idSP`, `size`, `mau`, `soLuong`, `trangThai`) V
 (121, 40, 29, 'Hồng', 0, 1),
 (122, 40, 30, 'Hồng', 0, 1),
 (123, 40, 34, 'Hồng', 0, 0),
-(124, 38, 29, 'Đen', 0, 1);
+(124, 38, 29, 'Đen', 0, 1),
+(125, 41, 29, 'Ghi xám', 100, 1),
+(126, 41, 30, 'Ghi xám', 100, 1),
+(127, 41, 31, 'Ghi xám', 100, 1),
+(128, 41, 29, 'Xanh rêu', 100, 1),
+(129, 41, 30, 'Xanh rêu', 100, 1),
+(130, 41, 31, 'Xanh rêu', 100, 1),
+(131, 42, 29, 'Nâu nhạt', 100, 1),
+(132, 42, 30, 'Nâu nhạt', 100, 1),
+(133, 42, 31, 'Nâu nhạt', 100, 1),
+(134, 43, 29, 'Nâu', 100, 1),
+(135, 43, 30, 'Nâu', 100, 1),
+(136, 43, 31, 'Nâu', 100, 1),
+(137, 44, 29, 'Trắng be', 100, 1),
+(138, 44, 30, 'Trắng be', 100, 1),
+(139, 44, 31, 'Trắng be', 100, 1),
+(140, 44, 32, 'Trắng be', 100, 1),
+(141, 45, 29, 'Trắng xám', 100, 1),
+(142, 45, 30, 'Trắng xám', 100, 1),
+(143, 45, 31, 'Trắng xám', 100, 1),
+(144, 45, 32, 'Trắng xám', 100, 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -484,13 +545,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `idDH` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `idAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT cho bảng `khuyenmai`
@@ -526,7 +587,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT cho bảng `size_mau`
 --
 ALTER TABLE `size_mau`
-  MODIFY `idSM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `idSM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
