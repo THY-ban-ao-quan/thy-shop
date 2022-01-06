@@ -3,9 +3,9 @@
       <div class="gender__toggle">
         <?php foreach ($menu as $item) : 
           if($item == $menu[0]) {?> 
-            <button class="active"><?php echo $item['tenDM'];?></button>
+            <button class="active" data-id="<?php echo $item['idDM'];?>"><?php echo $item['tenDM'];?></button>
           <?php } else {?>
-            <button><?php echo $item['tenDM'];?></button>
+            <button data-id="<?php echo $item['idDM'];?>"><?php echo $item['tenDM'];?></button>
         <?php } endforeach; ?>
       </div>
       <div class="glide">
@@ -27,51 +27,23 @@
             </div>
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
-                <li class="glide__slide">
-                    <div class="product">
-                        <div class="thumbnail">
-                            <a href="/" style="background-image:url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/122021/1638787138146.jpeg)"></a>
-                        </div>
-                        <div class="detail">
-                            <div class="info">
-                                <h6 class="name">textured plaid jacket</h6>
-                                <div class="price">                                
-                                    <p>799.000 ₫</p>
-                                </div>                                
+                <?php foreach ($seasonalProducts as $product) : ?> 
+                    <li class="glide__slide">
+                        <div class="product">
+                            <div class="thumbnail">
+                                <a href="/" style="background-image:url(./assets/img/products/<?php echo $product['linkAnh']; ?>)"></a>
+                            </div>
+                            <div class="detail">
+                                <div class="info">
+                                    <h6 class="name"><?php echo $product['tenSP']; ?></h6>
+                                    <div class="price">                                
+                                        <p><?php echo number_format($product['donGia'], 0, ',', ',')?> ₫</p>
+                                    </div>                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="glide__slide">
-                    <div class="product">
-                        <div class="thumbnail">
-                            <a href="/" style="background-image:url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/112021/1638241386336.jpeg"></a>
-                        </div>
-                        <div class="detail">
-                            <div class="info">
-                                <h6 class="name">textured plaid jacket</h6>
-                                <div class="price">                                
-                                    <p>799.000 ₫</p>
-                                </div>                                
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="glide__slide">
-                    <div class="product">
-                        <div class="thumbnail">
-                            <a href="/" style="background-image:url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/122021/1639840246849.jpeg)"></a>
-                        </div>
-                        <div class="detail">
-                            <div class="info">
-                                <h6 class="name">textured plaid jacket</h6>
-                                <div class="price">                                
-                                    <p>799.000 ₫</p>
-                                </div>                                
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                <?php endforeach;?>
             </ul>
           </div>
         </div>

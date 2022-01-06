@@ -4,9 +4,23 @@
 
     switch ($act) {
         case 'home':
+            $handle = isset($_GET['handle']) ? $_GET['handle'] : "home";
+
             require_once('controllers/homeController.php');
             $controller_obj = new HomeController();
-            $controller_obj->Index();
+            switch ($handle) {
+                case 'newProducts':
+                    $controller_obj->NewProducts();
+                    break;
+                case 'seasonalProducts':
+                    $controller_obj->SeasonalProducts();
+                    break;
+                case 'featuredProducts':
+                    $controller_obj->FeaturedProducts();
+                    break;
+                default: 
+                    $controller_obj->Index();
+            }
             break;
 
         case 'account':

@@ -3,8 +3,6 @@ new Glide(".glide.home-banner", {
   hoverpause: true,
 }).mount();
 
-console.log(document.querySelector(".new-products__slide .glide"));
-
 new Glide(".new-products__slide .glide", {
   type: "carousel",
   startAt: 0,

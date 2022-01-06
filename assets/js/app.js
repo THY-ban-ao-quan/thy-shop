@@ -18,26 +18,76 @@ const app = (function () {
     ajax_app.Login();
 
     // Section
-    section.toggleGenderBtn(".new-products__slide .gender__toggle button");
-    section.toggleGenderBtn(".season__slide .gender__toggle button");
-    section.toggleGenderBtn(".featured__section .gender__toggle button");
+    const options1 = {
+      type: "carousel",
+      startAt: 0,
+      perView: 4.35,
+      autoplay: 4000,
+      hoverpause: true,
+      gap: 20,
+      breakpoints: {
+        1024: {
+          perView: 4.5,
+        },
+        740: {
+          perView: 2,
+        },
+      },
+    };
 
-    //   const rs = document.querySelectorAll(".product");
-    //   let raw =
-    //     "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES ('','','','','','')\n";
+    const options2 = {
+      type: "carousel",
+      startAt: 0,
+      perView: 3,
+      autoplay: 4000,
+      hoverpause: true,
+      gap: 20,
+      breakpoints: {
+        1024: {
+          perView: 3,
+        },
+        740: {
+          perView: 2,
+        },
+      },
+    };
 
-    //   rs.forEach((item) => {
-    //     const name = item.querySelector("h6.name").innerText;
-    //     const price = item
-    //       .querySelector(".price p")
-    //       .innerText.replace(".", "")
-    //       .replace(" ₫", "")
-    //       .replace(".", "");
+    section.toggleGenderBtn(
+      ".new-products__slide .gender__toggle button",
+      ".new-products__slide .glide__slides",
+      ".new-products__slide .glide",
+      options1,
+      "newProducts"
+    );
+    section.toggleGenderBtn(
+      ".season__slide .gender__toggle button",
+      ".season__slide .glide__slides",
+      ".season__slide .glide",
+      options2,
+      "seasonalProducts"
+    );
+    section.toggleGenderBtn(
+      ".featured__section .gender__toggle button",
+      ".featured__section .featured__list",
+      "featuredProducts"
+    );
 
-    //     raw += `('${name}','${price}','','','','','')\n`;
-    //   });
+    // const rs = document.querySelectorAll(".product");
+    // let raw =
+    //   "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES ('','','','','','')\n";
 
-    //   console.log(raw);
+    // rs.forEach((item) => {
+    //   const name = item.querySelector("h6.name").innerText;
+    //   const price = item
+    //     .querySelector(".price p")
+    //     .innerText.replace(".", "")
+    //     .replace(" ₫", "")
+    //     .replace(".", "");
+
+    //   raw += `('${name}','${price}','','','','','')\n`;
+    // });
+
+    // console.log(raw);
 
     //   const rs = document.querySelectorAll(".product");
     //   let raw =
