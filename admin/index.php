@@ -355,6 +355,8 @@ session_start();
                                                 break;
                                             case "delete":
                                                 $tk_controller->delete();
+                                            case "isActive":
+                                                $tk_controller->isActive();
                                                 break;
                                             default:
                                                 require_once('./views/taikhoan/taiKhoanView.php');

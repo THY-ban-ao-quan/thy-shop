@@ -393,4 +393,9 @@ class sanPhamController
     {
         return $this->sp_model->kiemTraSoLuong($idSP, $mau, $size);
     }
+
+    public function countSanPham()
+    {
+        return $this->sp_model->countSanPham();
+    }
 }

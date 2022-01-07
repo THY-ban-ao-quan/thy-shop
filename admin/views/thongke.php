@@ -1,3 +1,15 @@
+<?php
+require_once('controller/loaiSanPhamController.php');
+require_once('controller/SanPhamController.php');
+require_once('controller/danhMucController.php');
+require_once('controller/mauController.php');
+require_once('controller/sizeController.php');
+$lsp_controller = new loaiSanPhamController();
+$sp_controller = new sanPhamController();
+$dm_controller = new danhMucController();
+$m_controller = new mauController();
+$s_controller = new sizeController();
+?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -17,8 +29,8 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                Earnings (Monthly)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                Loại sản phẩm</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $lsp_controller->countLoaiSanPham() ?></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -35,8 +47,8 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Earnings (Annual)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                Sản phẩm</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $sp_controller->countSanPham() ?></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

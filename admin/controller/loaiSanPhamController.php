@@ -93,5 +93,8 @@
             $idLSP = $_GET['id'];
             return $this->lsp_model->getLoaiSanPhamByIdLSP($idLSP);
         }
+
+    public function countLoaiSanPham(){
+        return $this->lsp_model->countLoaiSanPham();
     }
-?>
+    }

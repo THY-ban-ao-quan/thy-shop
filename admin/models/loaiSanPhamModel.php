@@ -2,7 +2,8 @@
 require_once("./models/model.php");
 class loaiSanPhamModel extends Model
 {
-    function getLoaiSanPhamByIdDM($id){
+    function getLoaiSanPhamByIdDM($id)
+    {
         $query = "select * from loaisanpham where idDM ='$id' and trangThai = 1";
         $rs = $this->conn->query($query);
         $data = array();
@@ -12,7 +13,8 @@ class loaiSanPhamModel extends Model
         return $data;
     }
 
-    public function getTenLoaiSanPham($id){
+    public function getTenLoaiSanPham($id)
+    {
         $query = "select tenLSP from loaisanpham where idLSP ='$id' ";
         $rs = $this->conn->query($query)->fetch_assoc();
         return $rs['tenLSP'];
@@ -36,7 +38,8 @@ class loaiSanPhamModel extends Model
         return $data;
     }
 
-    public function add($data){
+    public function add($data)
+    {
         $f = "";
         $v = "";
         foreach ($data as $key => $value) {
@@ -48,13 +51,12 @@ class loaiSanPhamModel extends Model
         $query = "INSERT INTO loaisanpham ($f) VALUES ($v);";
         $rs = $this->conn->query($query);
         if ($rs == true) {
-                setcookie('msg', 'Thêm mới thành công', time() + 2);
-                header('Location: ?mod=loaisanpham&idDM='.$data['idDM']);
-                
-            } else {
-                setcookie('msg', 'Thêm mới không thành công', time() + 2);
-                header('Location: ?mod=loaisanpham&idDM='.$data['idDM'].'&act=add');
-            }
+            setcookie('msg', 'Thêm mới thành công', time() + 2);
+            header('Location: ?mod=loaisanpham&idDM=' . $data['idDM']);
+        } else {
+            setcookie('msg', 'Thêm mới không thành công', time() + 2);
+            header('Location: ?mod=loaisanpham&idDM=' . $data['idDM'] . '&act=add');
+        }
     }
 
     function update($data)
@@ -65,7 +67,7 @@ class loaiSanPhamModel extends Model
         }
         $v = trim($v, ",");
 
-        $query = "UPDATE loaisanpham SET  $v   WHERE idLSP = " . $data['idLSP'];   
+        $query = "UPDATE loaisanpham SET  $v   WHERE idLSP = " . $data['idLSP'];
         $rs = $this->conn->query($query);
         return $rs;
     }
@@ -76,4 +78,10 @@ class loaiSanPhamModel extends Model
         return $rs;
     }
 
+    public function countLoaiSanPham()
+    {
+        $query = "select * from loaisanpham ";
+        $rs = $this->conn->query($query);
+        return $rs->num_rows;
+    }
 }

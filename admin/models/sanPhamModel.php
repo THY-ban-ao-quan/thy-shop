@@ -263,4 +263,11 @@ class sanPhamModel extends Model
         }
         return 0;
     }
+
+    public function countSanPham()
+    {
+        $query = "select * from sanpham ";
+        $rs = $this->conn->query($query);
+        return $rs->num_rows;
+    }
 }
