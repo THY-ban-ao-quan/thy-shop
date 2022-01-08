@@ -34,4 +34,11 @@ class sizeModel extends Model
             header('Location: ?mod=size');
         }
     }
+
+    public function getSizeMauById($idSM)
+    {
+        $sql = "select * from size_mau where idSM = '$idSM'";
+        $rs = $this->conn->query($sql)->fetch_assoc();
+        return $rs;
+    }
 }

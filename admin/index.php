@@ -456,6 +456,20 @@ session_start();
                                                 require_once('./views/size/sizeView.php');
                                         }
                                         break;
+                                    case "donhang":
+                                        require_once('./controller/donHangController.php');
+                                        $dh_controller = new donHangController();
+                                        switch ($act) {
+                                            case "detail":
+                                                require_once('./views/donhang/donHangDetailView.php');
+                                                break;
+                                            case "duyet":
+                                                $dh_controller->duyetonHang();
+                                                break;
+                                            default:
+                                                require_once('./views/donhang/donHangView.php');
+                                        }
+                                        break;
                                     default:
                                         require_once('./views/thongke.php');
                                 }
@@ -531,8 +545,9 @@ session_start();
     <script src="./assets/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="./assets/js/demo/chart-area-demo.js"></script>
-    <script src="./assets/js/demo/chart-pie-demo.js"></script>
+    <script src="./assets/js/chart.js"></script>
+    <script src="./assets/js/chartDoanhThu.js"></script>
+
 
 </body>
 
