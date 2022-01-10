@@ -11,8 +11,19 @@ class donHangController
 
     public function getAllDonHang()
     {
+        $act = isset($_GET['act']) ? $_GET['act'] : "";
         $data =  array();
-        $data = $this->dh_model->getAllDonHang();
+        if ($act != "") {
+            if ($act == "daduyet") {
+                $data = $this->dh_model->getAllDonHangDaDuyet();
+            }
+            if ($act == "chuaduyet") {
+                $data = $this->dh_model->getAllDonHangChuaDuyet();
+            }
+        } else {
+            $data = $this->dh_model->getAllDonHang();
+        }
+
         return $data;
     }
 
@@ -57,5 +68,15 @@ class donHangController
     public function doanhThuTheoThang()
     {
         return $this->dh_model->doanhThuTheoThang();
+    }
+
+    public function getAllDonHangDaDuyet()
+    {
+        return $this->dh_model->getAllDonHangDaDuyet();
+    }
+
+    public function getAllDonHangChuaDuyet()
+    {
+        return $this->dh_model->getAllDonHangChuaDuyet();
     }
 }

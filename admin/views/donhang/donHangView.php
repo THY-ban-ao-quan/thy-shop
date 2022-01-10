@@ -5,8 +5,13 @@ $dh_controller = new donHangController();
 $tk_controller = new taiKhoanController();
 $data = $dh_controller->getAllDonHang();
 ?>
+<a href="?mod=donhang&act=daduyet" type="button" class="btn btn-success">Đã duyệt</a>
+<a href="?mod=donhang&act=chuaduyet" type="button" class="btn btn-danger">Chưa duyệt</a>
+<a href="?mod=donhang" type="button" class="btn btn-primary">Tất cả</a>
+
 <br>
 <br>
+
 <?php if (isset($_COOKIE['msg'])) { ?>
     <div class="alert alert-success">
         <strong>Thông báo</strong> <?= $_COOKIE['msg'] ?>

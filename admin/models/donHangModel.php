@@ -13,6 +13,26 @@ class DonHangModel extends Model
         }
         return $data;
     }
+    function getAllDonHangDaDuyet()
+    {
+        $sql = "select * from donhang where tinhTrang = 1";
+        $rs = $this->conn->query($sql);
+        $data = array();
+        while ($row = $rs->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    function getAllDonHangChuaDuyet()
+    {
+        $sql = "select * from donhang where tinhTrang = 0";
+        $rs = $this->conn->query($sql);
+        $data = array();
+        while ($row = $rs->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
 
     function getDonHangById($id)
     {
@@ -97,9 +117,20 @@ class DonHangModel extends Model
             $data[] = $row;
         }
         $str = "";
+        $thang = "";
         foreach ($data as $d) {
-            $str .= $d['tong'] . ", ";
+            $thang .= $d['thang'] . ", ";
         }
+        $j = 0;
+        for ($i = 1; $i <= 12; $i++) {
+            if (str_contains($thang, $i . "")) {
+                $str .= $data[$j]['tong'] . ", ";
+                $j++;
+            } else {
+                $str .=   "0, ";
+            }
+        }
+
         return $str;
     }
 }

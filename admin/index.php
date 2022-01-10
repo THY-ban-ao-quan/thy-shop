@@ -107,6 +107,12 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="?mod=khuyenmai">
+                    <i class="fas fa-list"></i>
+                    <span>Quản lý khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="?mod=mau">
                     <i class="fas fa-list"></i>
                     <span>Quản lý màu</span>
