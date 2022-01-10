@@ -1,10 +1,21 @@
+import { section } from "./sections.js";
+import { ajax_app } from "./ajax_app.js";
+
 const header = (function () {
   const $ = document.querySelector.bind(document);
   const $$ = document.querySelectorAll.bind(document);
 
-  function ToggleSearch() {
+  async function ToggleSearch() {
     const searchContainer = $(".search__container");
     searchContainer.classList.toggle("active");
+
+    if (!searchContainer.classList.contains("active")) return;
+
+    const rs = await ajax_app.Get("?act=product&handle=featured");
+    section.renderProducts2(
+      JSON.parse(rs),
+      $(".search__container .related__product-list")
+    );
   }
 
   // Open/close search container

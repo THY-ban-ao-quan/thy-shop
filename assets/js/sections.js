@@ -16,22 +16,26 @@ const section = (function () {
 
   function renderProducts(list, parentNode, glideSelector, options) {
     let cHtml = "";
-    parentNode.innerHTML = "";
     list.forEach((item) => {
       cHtml += `
         <li class="glide__slide ">
             <div class="product">
                 <div class="thumbnail">
-                    <a href="/" style="background-image:url(./assets/img/products/${
-                      item.linkAnh
-                    })"></a>
+                    <a href="?act=product&handle=detail&id=${
+                      item.idSP
+                    }"  style="background-image:url(./assets/img/products/${
+        item.linkAnh
+      })"></a>
                 </div>
                 <div class="detail">
                     <div class="info">
                         <h6 class="name">${item.tenSP}</h6>
                         <div class="price">                                
                             <p>${numeral(item.donGia).format("0,0")} ₫</p>
-                        </div>                                
+                        </div>
+                        <p class="color">+${
+                          item.slMau
+                        } màu</p>                                
                     </div>
                 </div>
             </div>
@@ -46,21 +50,25 @@ const section = (function () {
 
   function renderProducts2(list, parentNode) {
     let cHtml = "";
-    parentNode.innerHTML = "";
     list.forEach((item) => {
       cHtml += `
         <div class="product">
             <div class="thumbnail">
-                <a href="/" style="background-image:url(./assets/img/products/${
-                  item.linkAnh
-                })"></a>
+                <a href="?act=product&handle=detail&id=${
+                  item.idSP
+                }" style="background-image:url(./assets/img/products/${
+        item.linkAnh
+      })"></a>
             </div>
             <div class="detail">
                 <div class="info">
                     <h6 class="name">${item.tenSP}</h6>
                     <div class="price">                                
                         <p>${numeral(item.donGia).format("0,0")} ₫</p>
-                    </div>                                
+                    </div>  
+                    <p class="color">+${
+                      item.slMau
+                    } màu</p>                              
                 </div>
             </div>
         </div>
@@ -125,6 +133,7 @@ const section = (function () {
   return {
     toggleGenderBtn,
     toggleGenderBtn2,
+    renderProducts2,
   };
 })();
 

@@ -14,5 +14,10 @@ class Model
        $result = $this->conn->query($query);
        return $rs = $result->fetch_object();
    }
+
+   function LoadMenu() {
+        $query = "SELECT * FROM danhmuc WHERE trangthai = '1'";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>

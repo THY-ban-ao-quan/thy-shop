@@ -2,6 +2,7 @@ import { modal } from "./modal.js";
 import { ajax_app } from "./ajax_app.js";
 import { header } from "./header.js";
 import { section } from "./sections.js";
+import { product } from "./product.js";
 
 const app = (function () {
   function Init() {
@@ -70,6 +71,19 @@ const app = (function () {
       ".featured__section .gender__toggle button",
       ".featured__section .featured__list",
       "featuredProducts"
+    );
+
+    // product
+    product.ChangeSize("size__variation", ".detail-layout .size > ul");
+    product.ChangeColor(
+      ".detail-layout .color__variation",
+      ".detail-layout .gallery",
+      ".detail-layout .color__name",
+      ".detail-layout .size > ul"
+    );
+    product.Search(
+      ".search__container .search__input input",
+      ".search__container .related__product-list"
     );
 
     // const rs = document.querySelectorAll(".product");

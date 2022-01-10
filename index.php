@@ -58,5 +58,28 @@
                         break;
                 }
             break;
+        case 'product':
+            require_once('controllers/productController.php');
+            $controller_obj = new ProductController();
+
+            $handle = isset($_GET['handle']) ? $_GET['handle'] : "detail";
+            switch ($handle) {
+                    case 'detail':
+                        $controller_obj->Detail();
+                        break;
+                    case 'images':
+                         $controller_obj->GetImages();
+                        break;
+                    case 'sizes':
+                         $controller_obj->GetSizes();
+                        break;
+                    case 'search':
+                         $controller_obj->Search();
+                        break;
+                    case 'featured':
+                         $controller_obj->FeaturedProducts();
+                        break;
+                }
+            break;
     }
 ?>
