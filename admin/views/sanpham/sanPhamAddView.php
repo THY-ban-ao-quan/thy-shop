@@ -171,9 +171,18 @@ $s_controller = new sizeController();
                                             echo '<br><br>';
                                         } ?>
 
-                                        <input type="checkbox" name="<?= str_replace(" ", "_", $key) ?>_size[]" value="<?= $i ?>">
+                                        <input type="checkbox" name="<?= str_replace(" ", "_", $key) ?>_size[]" value="<?= $i ?>" data-toggle="collapse" href="#<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong" role="button" aria-expanded="" aria-controls="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong">
                                         &nbsp;&nbsp;<?= $i ?>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                                        <div class="collapse multi-collapse" id="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong">
+                                            <div class=" card-body">
+                                                <label for="">Số lượng</label>
+                                                <input type="text" class="form-control" id="" placeholder="" name="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong">
+                                            </div>
+                                        </div>
+
                                     <?php } ?>
 
                                     <br>

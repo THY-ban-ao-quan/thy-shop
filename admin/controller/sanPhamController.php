@@ -18,6 +18,9 @@ class sanPhamController
 
     public function add()
     {
+        $rs1 = true;
+        $rs2 = true;
+        $rs3 = true;
         $data = array(
             'tenSP' => $_POST['tenSP'],
             'idLSP'  => $_POST['idLSP'],
@@ -33,7 +36,7 @@ class sanPhamController
             }
         }
         //chèn thông tin sp trước để lấy id
-        $this->sp_model->add($data);
+        $rs1 = $this->sp_model->add($data);
         $l = $this->getAllSanPham();
         $idSP = "";
         for ($i = count($l) - 1; $i >= 0; $i++) {
@@ -56,12 +59,25 @@ class sanPhamController
 
             $ten = str_replace(" ", "_", $mau) . "_size";
 
+
             foreach ($_POST[$ten] as $size) {
+
+                $tenSL = str_replace(" ", "_", $mau) . "_" . $size . "_soLuong";
+
+                if (empty($_POST[$tenSL])) {
+                    setcookie('msgsize', 'Vui lòng nhập số lượng', time() + 2);
+                    header('Location: ?mod=sanpham&act=add');
+                    return;
+                }
+                if (!empty($_POST[$tenSL])) {
+                    $sl = $_POST[$tenSL];
+                }
 
                 $arrayMau = array(
                     'idSP' => $idSP,
                     'mau' => $mau,
                     'size' => $size,
+                    'soLuong' => $sl,
                     'trangThai' => 1
                 );
                 foreach ($arrayMau as $key => $value) {
@@ -74,7 +90,7 @@ class sanPhamController
                         $arrayMau[$key] = $value;
                     }
                 }
-                $this->sp_model->insertSizeMau($arrayMau);
+                $rs2 = $this->sp_model->insertSizeMau($arrayMau);
             }
 
             //upload ảnh
@@ -101,15 +117,19 @@ class sanPhamController
                                 $listAnh[$key] = $value;
                             }
                         }
-                        $this->sp_model->insertAnh($listAnh);
+                        $rs3 = $this->sp_model->insertAnh($listAnh);
                     }
                 }
             }
         }
 
-
-
-        require_once('./views/sanpham/sanPhamView.php');
+        if ($rs1 || $rs2 || $rs3) {
+            setcookie('msg', 'Thêm mới thành công', time() + 2);
+            header('Location: ?mod=sanpham');
+        } else {
+            setcookie('msg', 'Thêm mới không thành công', time() + 2);
+            header('Location: ?mod=sanpham&act=add');
+        }
     }
 
     public function getSanPhamById($id)
@@ -183,6 +203,7 @@ class sanPhamController
             foreach ($_POST[$ten] as $size) {
                 //kiểm tra size đã có chưa
                 $kt = $this->kiemTraSize($_POST['idSP'], $mau, $size);
+
                 if (!$kt) { //thêm size chưa có
                     $arrayMau = array(
                         'idSP' => $_POST['idSP'],
@@ -229,11 +250,17 @@ class sanPhamController
             }
 
             //đổi toàn bộ thành trạng thái 1
+
             foreach ($_POST[$ten] as $size) {
+                $tenSL = str_replace(" ", "_", $mau) . "_" . $size . "_soLuong";
+                if (!empty($_POST[$tenSL])) {
+                    $sl = $_POST[$tenSL];
+                }
                 $arrayMau = array(
                     'idSP' => $_POST['idSP'],
                     'mau' => $mau,
                     'size' => $size,
+                    'soLuong' => $sl,
                     'trangThai' => 1
                 );
                 foreach ($arrayMau as $key => $value) {
@@ -360,5 +387,15 @@ class sanPhamController
     public function getAnhByIdSPMau($idSP, $mau)
     {
         return $this->sp_model->getAnhByIdSPMau($idSP, $mau);
+    }
+
+    public function kiemTraSoLuong($idSP, $mau, $size)
+    {
+        return $this->sp_model->kiemTraSoLuong($idSP, $mau, $size);
+    }
+
+    public function countSanPham()
+    {
+        return $this->sp_model->countSanPham();
     }
 }

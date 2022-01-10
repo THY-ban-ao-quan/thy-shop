@@ -107,6 +107,12 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="?mod=khuyenmai">
+                    <i class="fas fa-list"></i>
+                    <span>Quản lý khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="?mod=mau">
                     <i class="fas fa-list"></i>
                     <span>Quản lý màu</span>
@@ -355,6 +361,8 @@ session_start();
                                                 break;
                                             case "delete":
                                                 $tk_controller->delete();
+                                            case "isActive":
+                                                $tk_controller->isActive();
                                                 break;
                                             default:
                                                 require_once('./views/taikhoan/taiKhoanView.php');
@@ -454,6 +462,20 @@ session_start();
                                                 require_once('./views/size/sizeView.php');
                                         }
                                         break;
+                                    case "donhang":
+                                        require_once('./controller/donHangController.php');
+                                        $dh_controller = new donHangController();
+                                        switch ($act) {
+                                            case "detail":
+                                                require_once('./views/donhang/donHangDetailView.php');
+                                                break;
+                                            case "duyet":
+                                                $dh_controller->duyetonHang();
+                                                break;
+                                            default:
+                                                require_once('./views/donhang/donHangView.php');
+                                        }
+                                        break;
                                     default:
                                         require_once('./views/thongke.php');
                                 }
@@ -529,8 +551,9 @@ session_start();
     <script src="./assets/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="./assets/js/demo/chart-area-demo.js"></script>
-    <script src="./assets/js/demo/chart-pie-demo.js"></script>
+    <script src="./assets/js/chart.js"></script>
+    <script src="./assets/js/chartDoanhThu.js"></script>
+
 
 </body>
 

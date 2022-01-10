@@ -27,4 +27,9 @@ class sizeController
         }
         $this->s_model->add($data);
     }
+
+    public function getSizeMauById($idSM)
+    {
+        return $this->s_model->getSizeMauById($idSM);
+    }
 }

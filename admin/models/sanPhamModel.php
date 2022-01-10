@@ -254,9 +254,20 @@ class sanPhamModel extends Model
         return $data;
     }
 
-    //update trạng thái tất cả các dòng idSP màu không chọn
-    public function updateMau()
+    public function kiemTraSoLuong($idSP, $mau, $size)
     {
-        # code...
+        $sql = "select soLuong from size_mau where idSP = '$idSP' and mau = '$mau' and size = '$size' and trangThai = 1";
+        $rs = $this->conn->query($sql)->fetch_assoc();
+        if ($rs) {
+            return $rs['soLuong'];
+        }
+        return 0;
+    }
+
+    public function countSanPham()
+    {
+        $query = "select * from sanpham ";
+        $rs = $this->conn->query($query);
+        return $rs->num_rows;
     }
 }

@@ -177,13 +177,20 @@ $sanPham = $sp_controller->getSanPhamById($idSP);
                                     foreach ($dataSize as $i) {
                                         //kiểm tra size đã chọn
                                         $ktSize = $sp_controller->kiemTraSizeDaChon($sanPham['idSP'], $key, $i);
+                                        $ktSoLuong = $sp_controller->kiemTraSoLuong($sanPham['idSP'], $key, $i);
                                         if ($dem++ % 8 == 1) {
                                             echo '<br><br>';
                                         } ?>
 
-                                        <input <?= $ktSize ? 'checked' : '' ?> type="checkbox" name="<?= str_replace(" ", "_", $key) ?>_size[]" value="<?= $i ?>">
+                                        <input class="<?= $ktSize ? '' : 'collapsed' ?>" <?= $ktSize ? 'checked' : '' ?> type="checkbox" name="<?= str_replace(" ", "_", $key) ?>_size[]" value="<?= $i ?>" data-toggle="collapse" href="#<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong" role="button" aria-expanded="<?= $ktSize ? 'true' : 'false' ?>" aria-controls="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong">
                                         &nbsp;&nbsp;<?= $i ?>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="collapse multi-collapse <?= $ktSize ? 'show' : '' ?>" id="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong">
+                                            <div class=" card-body">
+                                                <label for="">Số lượng</label>
+                                                <input type="text" class="form-control" id="" placeholder="" name="<?= str_replace(" ", "_", $key) . "_" . $i ?>_soLuong" value="<?= $ktSoLuong ?>">
+                                            </div>
+                                        </div>
                                     <?php } ?>
 
                                     <br>
