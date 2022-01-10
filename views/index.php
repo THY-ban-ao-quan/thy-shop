@@ -1,3 +1,4 @@
+<?php define('__ROOT__', dirname(dirname(__FILE__)));?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,14 +28,8 @@
         require_once("user/userContainer.php");
         // MINI CART 
         require_once("cart/miniCartContainer.php");
-        // BANNER
-        require_once("banner/banner.php");
-        // NEW PRODUCTS
-        require_once("sections/newProducts.php");
-        // SEASON
-        require_once("sections/season.php");
-        // FEATURED PRODUCTS
-        require_once("sections/featuredProducts.php");
+        // REDIRECT
+        require_once("redirect.php");
         // FOOTER
         require_once("header_footer/footer.php");   
         // MODAL

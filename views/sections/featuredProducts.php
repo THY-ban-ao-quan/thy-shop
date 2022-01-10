@@ -12,14 +12,15 @@
             <?php foreach ($featuredProducts as $product) : ?> 
               <div class="product">
                 <div class="thumbnail">
-                    <a href="/" style="background-image:url(./assets/img/products/<?php echo $product['linkAnh']; ?>)"></a>
+                    <a href="?act=product&handle=detail&id=<?php echo $product['idSP']; ?>" style="background-image:url(./assets/img/products/<?php echo $product['linkAnh']; ?>)"></a>
                 </div>
                 <div class="detail">
                     <div class="info">
                         <h6 class="name"><?php echo $product['tenSP']; ?></h6>
                         <div class="price">                                
                             <p><?php echo number_format($product['donGia'], 0, ',', ',')?> ₫</p>
-                        </div>                                
+                        </div>   
+                        <p class="color">+<?php echo $product['slMau'] ?> màu</p>                             
                     </div>
                 </div>
             </div>

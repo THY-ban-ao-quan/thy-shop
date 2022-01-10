@@ -11,73 +11,13 @@
         ></path>
       </svg>
     </div>
-    <h3>Tìm kiếm</h3>
+    <h3>Tìm kiếm</h3> 
   </div>
   <form action="/" method="post" class="search__input">
     <input type="text" placeholder="Tìm kiếm..." />
   </form>
   <div class="related__product">
     <h3>Gợi ý cho bạn</h3>
-    <ul class="related__product-list">
-      <li>
-        <div class="product">
-          <div class="thumbnail">
-            <a
-              href="/"
-              style="
-                background-image: url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/112021/1636708843538.jpeg);
-              "
-            ></a>
-          </div>
-          <h6 class="name">CITY SWEATSHIRT MILAN</h6>
-          <p class="price">169.000 ₫</p>
-          <p class="color">+3 màu</p>
-        </div>
-      </li>
-      <li>
-        <div class="product">
-          <div class="thumbnail">
-            <a
-              href="/"
-              style="
-                background-image: url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/112021/1635909426541.jpeg);
-              "
-            ></a>
-          </div>
-          <h6 class="name">JOGGER KHAKI PANTS</h6>
-          <p class="price">169.000 ₫</p>
-          <p class="color">+2 màu</p>
-        </div>
-      </li>
-      <li>
-        <div class="product">
-          <div class="thumbnail">
-            <a
-              href="/p/prince-coat-1"
-              style="
-                background-image: url(http://media.leanservices.work/product/nCRHI1bpbr1ZIsxG/112021/1636034205152.jpeg);
-              "
-            ></a>
-          </div>
-          <h6 class="name">PRINCE COAT</h6>
-          <p class="price">999.000 ₫</p>
-        </div>
-      </li>
-      <li>
-        <div class="product">
-          <div class="thumbnail">
-            <a
-              href="/p/blank-sweater"
-              style="
-                background-image: url(http://media.leanservices.work/product/nCRHI1bpbr1ZIsxG/112021/1637226015902.jpeg);
-              "
-            ></a>
-          </div>
-          <h6 class="name">BLANK SWEATER</h6>
-          <p class="price">399.000 ₫</p>
-          <p class="color">+4 màu</p>
-        </div>
-      </li>
-    </ul>
+    <div class="related__product-list"></div>
   </div>
 </div>
