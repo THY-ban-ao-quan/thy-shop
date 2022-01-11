@@ -11,10 +11,14 @@ $data = $dh_controller->getChiTietDonHangByIdDH();
 $donHang = $dh_controller->getDonHangById($_GET['id']);
 $idKH = $donHang['idKH'];
 ?>
-<a href="?mod=donhang" type="button" class="btn btn-primary">Quay lại</a>
+<a href="?mod=donhang " type="button" class="btn btn-primary">Quay lại</a>
 <br>
 <br>
-<p class="text-primary font-weight-bold">Chi tiết đơn hàng <?= $_GET['id'] ?> của <?= $tk_controller->getTaiKhoanById($idKH)['tenND'] ?></p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <p class="text-primary font-weight-bold">Chi tiết đơn hàng <?= $_GET['id'] ?> của <?= $tk_controller->getTaiKhoanById($idKH)['tenND'] ?></p>
+    <a href="?mod=donhang&act=mayin&id=<?= $_GET['id'] ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Xuất hóa đơn</a>
+</div>
+
 <br>
 <?php if (isset($_COOKIE['msg'])) { ?>
     <div class="alert alert-success">
@@ -56,4 +60,5 @@ $idKH = $donHang['idKH'];
 
         <?php } ?>
         <p>Tổng tiền: <?= number_format($tong, 0) . " VNĐ"; ?></p>
+    </tbody>
 </table>
