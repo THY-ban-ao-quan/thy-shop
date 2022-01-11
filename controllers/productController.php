@@ -35,4 +35,10 @@ class ProductController
     function FeaturedProducts() {
         echo json_encode($this->product_model->FeaturedProducts(4));
     }
+
+    
+    function Category() {  
+        $menu = $this->product_model->LoadMenu();      
+        require_once('views/index.php');
+    }
 }

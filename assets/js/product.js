@@ -128,8 +128,17 @@ const product = (function () {
           );
 
           section.renderProducts2(JSON.parse(rs), listNode);
+
+          if (JSON.parse(rs).length != 0) return;
+          const h5 = document.createElement("h5");
+          h5.className = "empty-msg";
+          h5.innerText = "Không tìm thấy sản phẩm nào!";
+
+          const oldMsg = $(".search__container .empty-msg");
+          oldMsg && oldMsg.remove();
+          listNode.parentNode.appendChild(h5);
         }
-      }, 180);
+      }, 200);
     };
   }
 

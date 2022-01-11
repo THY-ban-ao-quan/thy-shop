@@ -68,18 +68,21 @@
                         $controller_obj->Detail();
                         break;
                     case 'images':
-                         $controller_obj->GetImages();
+                        $controller_obj->GetImages();
                         break;
                     case 'sizes':
-                         $controller_obj->GetSizes();
+                        $controller_obj->GetSizes();
                         break;
                     case 'search':
-                         $controller_obj->Search();
+                        $controller_obj->Search();
                         break;
                     case 'featured':
-                         $controller_obj->FeaturedProducts();
+                        $controller_obj->FeaturedProducts();
+                        break;
+                    case 'category':
+                        $controller_obj->Category();
                         break;
                 }
-            break;
+            break;        
     }
 ?>

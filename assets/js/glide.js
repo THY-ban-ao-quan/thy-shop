@@ -31,6 +31,7 @@ seasonalProductSlide &&
     type: "carousel",
     startAt: 0,
     perView: 3,
+    focusAt: "center",
     autoplay: 4000,
     hoverpause: true,
     gap: 20,
@@ -39,7 +40,7 @@ seasonalProductSlide &&
         perView: 3,
       },
       740: {
-        perView: 2,
+        perView: 1.5,
       },
     },
   }).mount();

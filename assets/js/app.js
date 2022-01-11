@@ -74,12 +74,12 @@ const app = (function () {
     );
 
     // product
-    product.ChangeSize("size__variation", ".detail-layout .size > ul");
+    product.ChangeSize("size__variation", ".detail-layout .sizes > ul");
     product.ChangeColor(
       ".detail-layout .color__variation",
       ".detail-layout .gallery",
       ".detail-layout .color__name",
-      ".detail-layout .size > ul"
+      ".detail-layout .sizes > ul"
     );
     product.Search(
       ".search__container .search__input input",
