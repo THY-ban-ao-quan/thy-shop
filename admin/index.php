@@ -30,6 +30,8 @@ session_start();
     <!-- ckeditor -->
     <script type="text/javascript" src="../../../ckeditor/ckeditor.js"></script>
 
+    <link href="../admin/assets/css/mayin.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -122,6 +124,12 @@ session_start();
                 <a class="nav-link collapsed" href="?mod=size">
                     <i class="fas fa-list"></i>
                     <span>Quản lý size</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="?mod=banner">
+                    <i class="fas fa-list"></i>
+                    <span>Quản lý banner</span>
                 </a>
             </li>
 
@@ -472,10 +480,61 @@ session_start();
                                             case "duyet":
                                                 $dh_controller->duyetonHang();
                                                 break;
+                                            case "mayin":
+                                                require_once('./views/mayin.php');
+                                                break;
                                             default:
                                                 require_once('./views/donhang/donHangView.php');
                                         }
                                         break;
+                                    case "banner":
+                                        require_once('./controller/bannerController.php');
+                                        $bn_controller = new bannerController();
+                                        switch ($act) {
+                                            case "anhien":
+                                                $bn_controller->AnHien();
+                                                break;
+                                            case "add":
+                                                require_once('./views/banner/bannerAddView.php');
+                                                break;
+                                            case "delete":
+                                                $bn_controller->delete();
+                                                break;
+                                            case "edit":
+                                                require_once('./views/banner/bannerEditView.php');
+                                                break;
+                                            case "addCSDL":
+                                                $bn_controller->add();
+                                                break;
+                                            case "editCSDL":
+                                                $bn_controller->update();
+                                                break;
+                                            default:
+                                                require_once('./views/banner/bannerView.php');
+                                        }
+
+                                        break;
+                                    case "khuyenmai":
+                                        require_once('./controller/khuyenMaiController.php');
+                                        $km_controller = new khuyenMaiController();
+                                        switch ($act) {
+                                            case "edit":
+                                                require_once('./views/khuyenmai/khuyenMaiEditView.php');
+                                                break;
+                                            case "add":
+                                                require_once('./views/khuyenmai/khuyenMaiAddView.php');
+                                                break;
+                                            case "editCSDL":
+                                                $km_controller->update();
+                                                break;
+                                            case "addCSDL":
+                                                $km_controller->add();
+                                                break;
+                                            default:
+                                                require_once('./views/khuyenmai/khuyenMaiView.php');
+                                        }
+                                        break;
+
                                     default:
                                         require_once('./views/thongke.php');
                                 }
