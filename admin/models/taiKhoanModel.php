@@ -41,12 +41,7 @@ class taiKhoanModel extends Model
 
     public function add($data)
     {
-        //$checkEmail = $this->CheckEmaill($data['email']);
-        // if(!empty($checkEmail)) {
-        //     setcookie('error_email', 'Email đã tồn tại', time() + 2);
-        //     header('Location: ?mod=taikhoan&act=add');
-        //     return $data;
-        // }
+
         $f = "";
         $v = "";
         foreach ($data as $key => $value) {
