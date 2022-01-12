@@ -1,6 +1,8 @@
 <div class="categories-layout">
     <div class="categories__info">
-        <h1 class="info__title">thời trang nam</h1>
+        <h1 class="info__title">
+          <?php echo isset($cateName) ? $cateName : "thời trang nam" ?>
+        </h1>
         <p>
             Tất cả những sản phẩm Mới nhất nằm trong BST được mở bán Hàng Tuần sẽ được cập nhật liên tục tại đây. Chắc chắn bạn sẽ tìm thấy những sản phẩm Đẹp Nhất - Vừa Vặn Nhất - Phù Hợp nhất với phong cách của mình.
         </p>
@@ -57,7 +59,7 @@
       </div>
       <div class="filter__list">
         <ul class="filter__list--wrapper">
-          <li class="color">
+          <li>
             <h4>Màu sắc
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
@@ -76,7 +78,7 @@
               <li class="color pink" data-color="đen"></li>
             </ul>
           </li>
-          <li class="size">
+          <li>
             <h4>
               Size quần/áo
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
@@ -92,18 +94,16 @@
               <li class="size" data-size="36">29</li>
             </ul>
           </li>
-          <li class="sort">
+          <li>
             <h4>Mức giá
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
-            <ul>
-              <li class="sub-item active" data-price1="300000">dưới 300k</li>
-              <li class="sub-item" data-price1="300000" data-price2="600000">300k - 600k</li>
-              <li class="sub-item" data-price1="600000" data-price2="900000">600k - 900k</li>
-              <li class="sub-item" data-price1="900000">trên 900k</li></li>
-            </ul>
+            <p>
+              <input type="text" id="amount" class="custom-amount"  readonly>
+            </p>            
+            <div id="slider-range" class="custom-range"></div>
           </li>
-          <li class="sort">
+          <li>
             <h4>Sắp xếp
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
@@ -119,158 +119,21 @@
       </div>
     </div>
     <div class="categories__products"> 
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
+        <?php foreach ($products as $product) : ?> 
+              <div class="product">
+                <div class="thumbnail">
+                    <a href="?act=product&handle=detail&id=<?php echo $product['idSP']; ?>" style="background-image:url(./assets/img/products/<?php echo $product['linkAnh']; ?>)"></a>
                 </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
+                <div class="detail">
+                    <div class="info">
+                        <h6 class="name"><?php echo $product['tenSP']; ?></h6>
+                        <div class="price">                                
+                            <p><?php echo number_format($product['donGia'], 0, ',', ',')?> ₫</p>
+                        </div>   
+                        <p class="color">+<?php echo $product['slMau'] ?> màu</p>                             
+                    </div>
                 </div>
             </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
-        <div class="product">
-          <div class="thumbnail">
-            <a href="/p/bei-shorts"><span style="background-image:url(https://cdn.ssstutter.com/products/system/102021/1634091231262.jpeg)"></span></a>
-          </div>
-          <div class="detail">
-            <div class="info">
-                <h6 class="name">bei shorts</h6>
-                <div class="price">
-                  <p>399.000 <span class="currency-symbol">₫</span></p>
-                </div>
-                
-                <div class="color">
-                  <p>+3 màu</p>
-                </div>
-            </div>
-          </div>
-        </div>        
+          <?php endforeach;?>        
     </div>
 </div>

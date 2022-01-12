@@ -38,7 +38,15 @@ class ProductController
 
     
     function Category() {  
-        $menu = $this->product_model->LoadMenu();      
+        $idDm = isset($_GET['id']) && !empty($_GET['id']) ? $_GET['id'] : -1;
+        $menu = $this->product_model->LoadMenu();
+        $maxPrice = $this->product_model->MaxPrice()['donGia'];
+        $products = $this->product_model->Filter(-1, $idDm,[], [], 0, $maxPrice, 6, 0, 'desc');
+        
         require_once('views/index.php');
+    }
+
+    function Filter($idCate, $idDm, $sizes, $colors, $price1, $price2, $limit, $start, $sort) {
+
     }
 }
