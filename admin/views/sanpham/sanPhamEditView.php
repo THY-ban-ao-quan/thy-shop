@@ -126,7 +126,7 @@ $sanPham = $sp_controller->getSanPhamById($idSP);
             <select id="new_select" name="idLSP" class="form-control">
                 <!-- list loai sp -->
                 <?php
-                foreach ($lsp_controller->getAllDanhMuc($idDM) as $row) { ?>
+                foreach ($lsp_controller->getAllloaiSanPham() as $row) { ?>
                     <option <?= ($sanPham['idLSP'] == $row['idLSP']) ? 'selected' : '' ?> value="<?= $row['idLSP'] ?>"><?= $row['tenLSP'] ?></option>
                 <?php } ?>
             </select>
