@@ -79,8 +79,8 @@
                     case 'featured':
                         $controller_obj->FeaturedProducts();
                         break;
-                    case 'category':
-                        $controller_obj->Category();
+                    case 'filter':
+                        $controller_obj->Filter();
                         break;
                 }
             break;        

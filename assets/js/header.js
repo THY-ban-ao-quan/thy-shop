@@ -9,10 +9,8 @@ const header = (function () {
     setTimeout(() => {
       const rs = ajax_app.Get("?act=product&handle=featured");
       rs.then((result) => {
-        section.renderProducts2(
-          JSON.parse(result),
-          $(".search__container .related__product-list")
-        );
+        $(".search__container .related__product-list").innerHTML =
+          section.renderProducts2(JSON.parse(result));
       });
     }, 400);
   }

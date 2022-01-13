@@ -25,7 +25,7 @@
     <div class="nav__left">
       <div class="nav__left-items">
          <?php foreach ($menu as $item) : ?> 
-            <a href="?act=product&handle=category&id=<?php echo $item['idDM'];?>">
+            <a href="?act=product&handle=filter&idDM=<?php echo $item['idDM'];?>">
               <?php echo $item['tenDM'];?>
             </a>
           <?php endforeach; ?> 
@@ -101,9 +101,9 @@
     </div>
     <div class="nav__mobile">
       <?php foreach ($menu as $item) : ?> 
-          <a href="?act=product&handle=category&id=<?php echo $item['idDM'];?>">
-            <?php echo $item['tenDM'];?>
-          </a>
+        <a href="?act=product&handle=filter&idDM=<?php echo $item['idDM'];?>">
+          <?php echo $item['tenDM'];?>
+        </a>
       <?php endforeach; ?> 
       <a class="" href="/">Blog</a>
       <?php if(isset($_SESSION['login'])) {?> 

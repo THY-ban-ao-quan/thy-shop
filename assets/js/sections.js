@@ -48,7 +48,7 @@ const section = (function () {
     glide.mount({ html: HtmlFix });
   }
 
-  function renderProducts2(list, parentNode) {
+  function renderProducts2(list) {
     let cHtml = "";
     list.forEach((item) => {
       cHtml += `
@@ -74,7 +74,7 @@ const section = (function () {
         </div>
       `;
     });
-    parentNode.innerHTML = cHtml;
+    return cHtml;
   }
 
   function toggleGenderBtn(
@@ -122,7 +122,7 @@ const section = (function () {
             "data=" + JSON.stringify(data)
           );
 
-          renderProducts2(JSON.parse(rs), parentNode);
+          parentNode.innerHTML = renderProducts2(JSON.parse(rs));
         }
 
         $(ToggleButtons + ".active").classList.remove("active");

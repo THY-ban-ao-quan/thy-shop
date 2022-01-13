@@ -117,7 +117,7 @@ const product = (function () {
         if (text == keyword) {
           if (keyword == "") {
             const rs = await ajax_app.Get("?act=product&handle=featured");
-            section.renderProducts2(JSON.parse(rs), listNode);
+            listNode.innerHTML = section.renderProducts2(JSON.parse(rs));
             return;
           }
 
@@ -127,7 +127,7 @@ const product = (function () {
             "data=" + JSON.stringify(data)
           );
 
-          section.renderProducts2(JSON.parse(rs), listNode);
+          listNode.innerHTML = section.renderProducts2(JSON.parse(rs));
 
           if (JSON.parse(rs).length != 0) return;
           const h5 = document.createElement("h5");
@@ -138,7 +138,7 @@ const product = (function () {
           oldMsg && oldMsg.remove();
           listNode.parentNode.appendChild(h5);
         }
-      }, 200);
+      }, 240);
     };
   }
 

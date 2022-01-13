@@ -1,3 +1,5 @@
+import { filter } from "./filter.js";
+
 // Init range slider
 function filterAmount(event, ui) {}
 
@@ -15,16 +17,16 @@ $(function () {
     step: 10000,
     range: true,
     min: 0,
-    max: 1000000,
-    values: [0, 1000000],
+    max: $("#slider-range").data("max") * 1 + 10000,
+    values: [0, $("#slider-range").data("max") * 1 + 10000],
     slide: function (event, ui) {
       const min = ui.values[0],
         max = ui.values[1];
       setTimeout(() => {
         const min2 = $("#slider-range").slider("values", 0),
           max2 = $("#slider-range").slider("values", 1);
-        if (min == min2 && max === max2) console.log(min, max);
-      }, 180);
+        if (min == min2 && max === max2) filter.productFilter();
+      }, 240);
 
       $("#amount").val(handleSlider(min) + " - " + handleSlider(max));
     },

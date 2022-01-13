@@ -98,8 +98,13 @@ class Product extends Model
     }
 
     function Categories($idDM) {
-        $query = "SELECT  donGia from sanpham";
-        return $this->conn->query($query)->fetch_assoc();
+        $query = "SELECT idLSP, tenLSP, idDM FROM loaisanpham WHERE idDM = $idDM";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function AllSizes() {
+         $query = "SELECT * FROM size";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
     }
 
     function Filter($idCate, $idDm, $sizes, $colors, $price1, $price2, $limit, $start, $sort) {

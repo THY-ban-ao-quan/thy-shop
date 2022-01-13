@@ -37,16 +37,27 @@ class ProductController
     }
 
     
-    function Category() {  
-        $idDm = isset($_GET['id']) && !empty($_GET['id']) ? $_GET['id'] : -1;
+    function Filter() {          
         $menu = $this->product_model->LoadMenu();
-        $maxPrice = $this->product_model->MaxPrice()['donGia'];
-        $products = $this->product_model->Filter(-1, $idDm,[], [], 0, $maxPrice, 6, 0, 'desc');
+        $data = isset($_POST['data']) && !empty($_POST['data']) ? json_decode($_POST['data']) : NULL;
+
+        $idDM = isset($_GET['idDM']) && !empty($_GET['idDM']) ? $_GET['idDM'] * 1 : -1;
+        $idLSP = isset($_GET['idLSP']) && !empty($_GET['idLSP']) ? $_GET['idLSP'] * 1 : -1;
+        $sizes = $data != NULL ? $data->sizes : [];
+        $colors = $data != NULL ? $data->colors : [];
+        $maxPrice = $data != NULL ? $data->price2 : $this->product_model->MaxPrice()['donGia'];
+        $minPrice = $data != NULL ? $data->price1 : 0;
+        $sort = $data != NULL ? $data->sort : "desc";
+        $limit = 12;
+        $start = $data != NULL ? ($data->page - 1) * $limit : 0;
+
+        $categories = $this->product_model->Categories($idDM);
+        $allSizes = $this->product_model->AllSizes();
+
+        $products = $this->product_model->Filter($idLSP, $idDM, $sizes, $colors, $minPrice, $maxPrice, $limit, $start, $sort);
         
-        require_once('views/index.php');
+        if($data == NULL) require_once('views/index.php');
+        else echo json_encode($products);
     }
 
-    function Filter($idCate, $idDm, $sizes, $colors, $price1, $price2, $limit, $start, $sort) {
-
-    }
 }

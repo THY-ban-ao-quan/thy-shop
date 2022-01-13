@@ -1,7 +1,18 @@
 <div class="categories-layout">
-    <div class="categories__info">
+    <div class="categories__info" data-idDM="<?php echo $idDM ?>" data-idLSP="<?php echo $idLSP ?>">
         <h1 class="info__title">
-          <?php echo isset($cateName) ? $cateName : "thời trang nam" ?>
+          <?php
+            if($idLSP != -1) {
+                foreach($categories as $item) {
+                if($idLSP == $item['idLSP']) echo $item['tenLSP'];
+              }
+            }
+            else {
+              foreach($menu as $item) {
+                if($idDM == $item['idDM']) echo "thời trang ". $item['tenDM'];
+              }
+            }
+          ?>
         </h1>
         <p>
             Tất cả những sản phẩm Mới nhất nằm trong BST được mở bán Hàng Tuần sẽ được cập nhật liên tục tại đây. Chắc chắn bạn sẽ tìm thấy những sản phẩm Đẹp Nhất - Vừa Vặn Nhất - Phù Hợp nhất với phong cách của mình.
@@ -9,19 +20,30 @@
     </div>
     <div class="categories__list">
       <ul>
-          <li><a href="/c/so-mi-ao-kieu"> SƠ MI  &amp; ÁO KIỂU</a></li>
-          <li><a href="/c/ao-thun"> ÁO THUN &</a></li>
-          <li><a href="/c/quan"> QUẦN</a></li>
-          <li><a href="/c/len-det"> LEN DỆT</a></li>
-          <li><a href="/c/phu-kien"> PHỤ KIỆN</a></li>
-          <li><a href="/c/ao-blazer-ao-khoac"> ÁO BLAZER &amp; ÁO KHOÁC</a></li>
-          <li><a href="/c/quan-bo"> QUẦN BÒ</a></li>
+          <?php foreach ($categories as $cate) : ?> 
+             <li><a 
+                  href="?act=product&handle=filter&idLSP=<?php echo $cate['idLSP']?>&idDM=<?php echo $cate['idDM']?>">
+                    <?php echo $cate['tenLSP']?>
+                </a>
+            </li>
+          <?php endforeach;?>
       </ul>
     </div>
     <div class="categories__filter">
       <div class="filter__toggle">
         <span class="mobile-cate-toggle">
-          quần short
+          <?php
+            if($idLSP != -1) {
+                foreach($categories as $item) {
+                if($idLSP == $item['idLSP']) echo $item['tenLSP'];
+              }
+            }
+            else {
+              foreach($menu as $item) {
+                if($idDM == $item['idDM']) echo "thời trang ". $item['tenDM'];
+              }
+            }
+          ?>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -53,7 +75,7 @@
               stroke-width="2"
             ></path>
           </svg>
-          Filter
+          Bộ lọc
         </span>
 
       </div>
@@ -63,19 +85,19 @@
             <h4>Màu sắc
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
-            <ul class="color-list">
-              <li class="color black active" data-color="đen"></li>
-              <li class="color grey" data-color="xám"></li>
-              <li class="color white" data-color="trắng"></li>              
-              <li class="color purple" data-color="tím"></li>
-              <li class="color blue" data-color="xanh biển"></li>
-              <li class="color light-blue" data-color="xanh da trời"></li>
-              <li class="color red" data-color="đỏ"></li>
-              <li class="color orange" data-color="cam"></li>
-              <li class="color yellow" data-color="vàng"></li>
-              <li class="color green" data-color="xanh lá"></li>
-              <li class="color brown" data-color="xám"></li>
-              <li class="color pink" data-color="đen"></li>
+            <ul class="color-list sub-filter">
+              <li class="color black" data-value="đen"></li>
+              <li class="color grey" data-value="xám"></li>
+              <li class="color white" data-value="trắng"></li>              
+              <li class="color purple" data-value="tím"></li>
+              <li class="color blue" data-value="xanh biển"></li>
+              <li class="color light-blue" data-value="xanh da trời"></li>
+              <li class="color red" data-value="đỏ"></li>
+              <li class="color orange" data-value="cam"></li>
+              <li class="color yellow" data-value="vàng"></li>
+              <li class="color green" data-value="xanh lá"></li>
+              <li class="color brown" data-value="nâu"></li>
+              <li class="color pink" data-value="đen"></li>
             </ul>
           </li>
           <li>
@@ -83,42 +105,45 @@
               Size quần/áo
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
-            <ul class="size-list">
-              <li class="size active" data-size="29">29</li>
-              <li class="size" data-size="30">29</li>
-              <li class="size" data-size="31">29</li>
-              <li class="size" data-size="32">29</li>
-              <li class="size" data-size="33">29</li>
-              <li class="size" data-size="34">29</li>
-              <li class="size" data-size="35">29</li>
-              <li class="size" data-size="36">29</li>
+            <ul class="size-list sub-filter">
+              <?php foreach ($allSizes as $size) : ?> 
+                <li class="size" data-value="<?php echo $size['size'] ?>">
+                  <?php echo $size['size'] ?>
+                </li>
+            <?php endforeach;?>  
             </ul>
           </li>
           <li>
             <h4>Mức giá
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
-            <p>
-              <input type="text" id="amount" class="custom-amount"  readonly>
-            </p>            
-            <div id="slider-range" class="custom-range"></div>
+            <div class="sub-filter">
+              <p>
+                <input type="text" id="amount" class="custom-amount"  readonly>
+              </p>            
+              <div id="slider-range" data-max="<?php echo $maxPrice ?>" class="custom-range"></div>
+            </div>
           </li>
           <li>
             <h4>Sắp xếp
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,24a1,1,0,0,1-.707-1.707l8.172-8.172a3,3,0,0,0,0-4.242L6.293,1.707A1,1,0,0,1,7.707.293l8.172,8.172a5.005,5.005,0,0,1,0,7.07L7.707,23.707A1,1,0,0,1,7,24Z"></path></svg>
             </h4>
-            <ul>
-              <li class="sub-item active" data-sort="desc">Giá giảm dần</li>
-              <li class="sub-item" data-sort="asc">Giá tăng dần</li>
+            <ul class = "sub-filter sort-list">
+              <li class="sort-item active" data-value="desc">Giá giảm dần</li>
+              <li class="sort-item" data-value="asc">Giá tăng dần</li>
             </ul>
           </li>
         </ul>
         <div class="filter__action">
-          <button data-toggle="filter">Đóng</button>
+          <button class="add">Đóng</button>
         </div>
       </div>
     </div>
-    <div class="categories__products"> 
+    <div class="categories__product-wrapper">
+      <div class="categories__products"> 
+        <?php 
+          if(count($products) == 0) echo " <h5 class='empty-msg'>Không tìm thấy sản phẩm nào!</h5>"
+        ?>
         <?php foreach ($products as $product) : ?> 
               <div class="product">
                 <div class="thumbnail">
@@ -135,5 +160,6 @@
                 </div>
             </div>
           <?php endforeach;?>        
+    </div>
     </div>
 </div>
