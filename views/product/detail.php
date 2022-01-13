@@ -42,15 +42,18 @@
                 <p>Chọn size</p>
                 <ul>
                     <?php 
-                        $i = 0;
+                        $isSetActive = false;
                         foreach ($sizes as $size) : 
-                            if($size['soLuong'] == 0) $i++;                        
-                            $active = $size == $sizes[$i] ? "active" : "";
-                            $disable = $size['soLuong'] == 0 ? "disabled" : "";
+                            if(!$isSetActive && $size['soLuong'] > 0) {
+                                $active = "active";
+                                $isSetActive = true;
+                            } else
+                                $active = "";
+                            $disable = $size['soLuong'] <= 0 ? "disabled" : "";
                     ?> 
                     <li>
                         <button 
-                            class="size__variation <?php echo $active, $disable  ?>" 
+                            class="size__variation <?php echo $active." ". $disable  ?>" 
                             data-idsm="<?php echo $size['idSM'] ?>" 
                             <?php echo $disable ?>
                             ><?php echo $size['size']?>

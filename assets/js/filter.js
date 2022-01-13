@@ -7,6 +7,8 @@ const filter = (function () {
     const button = select.ele(toggleName);
     const container = select.ele(containerName);
 
+    if (!button) return;
+
     button.onclick = function () {
       container.classList.toggle("active");
     };
@@ -36,11 +38,11 @@ const filter = (function () {
       price1: $("#slider-range").slider("values", 0),
       price2: $("#slider-range").slider("values", 1),
       sort: select.ele(".sort-list .sort-item.active").dataset.value,
-      page: page,
+      page: page * 1,
     };
 
-    const idDM = select.ele(".categories__info").dataset.iddm;
-    const idLSP = select.ele(".categories__info").dataset.idlsp;
+    const idDM = select.ele(".categories__info").dataset.iddm * 1;
+    const idLSP = select.ele(".categories__info").dataset.idlsp * 1;
     const productsNode = select.ele(".categories__products");
 
     const rs = await ajax_app.Post(
@@ -48,16 +50,17 @@ const filter = (function () {
       "data=" + JSON.stringify(data)
     );
 
-    if (JSON.parse(rs).length == 0) {
+    if (JSON.parse(rs).length == 0 && !isScroll) {
       productsNode.innerHTML = `<h5 class="empty-msg">Không tìm thấy sản phẩm nào!</h5>`;
       return;
     }
 
-    if (isScroll)
+    if (isScroll) {
       productsNode.innerHTML += section.renderProducts2(JSON.parse(rs));
-    else {
+    } else {
       productsNode.innerHTML = section.renderProducts2(JSON.parse(rs));
-      window.screenTop = 0;
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     }
   }
 

@@ -38,14 +38,16 @@ const product = (function () {
 
   function RenderSizes(list) {
     let html = "",
-      i = 0,
+      isSetActive = false,
       active,
       disable;
     if (!list) return html;
     list.forEach((item) => {
-      item.soLuong == 0 && i++;
-      active = item == list[i] ? "active" : "";
-      disable = item.soLuong == 0 ? "disabled" : "";
+      if (!isSetActive && item.soLuong > 0) {
+        active = "active";
+        isSetActive = true;
+      } else active = "";
+      disable = item.soLuong <= 0 ? "disabled" : "";
       html += `
         <li>
             <button 

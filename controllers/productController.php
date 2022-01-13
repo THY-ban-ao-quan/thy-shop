@@ -41,14 +41,14 @@ class ProductController
         $menu = $this->product_model->LoadMenu();
         $data = isset($_POST['data']) && !empty($_POST['data']) ? json_decode($_POST['data']) : NULL;
 
-        $idDM = isset($_GET['idDM']) && !empty($_GET['idDM']) ? $_GET['idDM'] * 1 : -1;
-        $idLSP = isset($_GET['idLSP']) && !empty($_GET['idLSP']) ? $_GET['idLSP'] * 1 : -1;
+        $idDM = isset($_GET['idDM']) && !empty($_GET['idDM']) ? $_GET['idDM'] : -1;
+        $idLSP = isset($_GET['idLSP']) && !empty($_GET['idLSP']) ? $_GET['idLSP'] : -1;
         $sizes = $data != NULL ? $data->sizes : [];
         $colors = $data != NULL ? $data->colors : [];
         $maxPrice = $data != NULL ? $data->price2 : $this->product_model->MaxPrice()['donGia'];
         $minPrice = $data != NULL ? $data->price1 : 0;
         $sort = $data != NULL ? $data->sort : "desc";
-        $limit = 12;
+        $limit = 6;
         $start = $data != NULL ? ($data->page - 1) * $limit : 0;
 
         $categories = $this->product_model->Categories($idDM);
