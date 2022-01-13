@@ -23,7 +23,7 @@
                 <h1 class="name"><?php echo $info['tenSP']?></h1>
                 <h2 class="price"><?php echo number_format($info['donGia'], 0, ',', ',')?> ₫</h2>
             </div>
-            <div class="color">
+            <div class="colors">
                 <p>Chọn màu : <strong class="color__name"><?php echo $colors[0]['mau']?></strong></p>
                 <ul>
                     <?php foreach ($colors as $color) : ?> 
@@ -38,7 +38,7 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="size">
+            <div class="sizes">
                 <p>Chọn size</p>
                 <ul>
                     <?php 

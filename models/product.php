@@ -91,4 +91,67 @@ class Product extends Model
         LIMIT $rank";
         return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
     }
+
+    function MaxPrice() {
+        $query = "SELECT MAX(donGia) donGia from sanpham";
+        return $this->conn->query($query)->fetch_assoc();
+    }
+
+    function Categories($idDM) {
+        $query = "SELECT idLSP, tenLSP, idDM FROM loaisanpham WHERE idDM = $idDM";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function AllSizes() {
+         $query = "SELECT * FROM size";
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function Filter($idCate, $idDm, $sizes, $colors, $price1, $price2, $limit, $start, $sort) {
+        $query = "SELECT
+            sp.idSP,
+            tenSP,
+            donGia,
+            hinhanh.linkAnh,
+            slm.slMau
+        FROM
+            sanpham sp
+        JOIN hinhanh ON sp.idSP = hinhanh.idSP
+        JOIN (SELECT m.idSP, COUNT(m.mau) as slMau FROM (SELECT DISTINCT idSP, mau FROM size_mau) as m GROUP BY m.idSP) slm
+        ON slm.idSP = sp.idSP
+        JOIN loaisanpham l ON l.idLSP = sp.idLSP
+        JOIN size_mau sm ON sm.idSP = sp.idSP
+        WHERE sp.trangThai = '1'";
+
+        if($idCate != -1)
+            $query .= " AND sp.idLSP = $idCate ";
+
+        if($idDm != -1)
+            $query .= " AND l.idDM = $idDm ";
+
+        if(!empty($sizes)) {
+            $query .= " AND (";
+            foreach($sizes as $value) {
+                if($sizes[0] != $value) $query.= " OR ";
+                $query.= " sm.size = $value ";
+            }
+            $query .= " ) ";
+        }
+
+        if(!empty($colors)) {
+            $query .= " AND (";
+            foreach($colors as $value) {
+                if($colors[0] != $value) $query.= " OR ";
+                $query.= " sm.mau like '%$value%' ";
+            }
+            $query .= " ) ";
+        }
+
+        $query .= " AND sp.donGia BETWEEN $price1 AND $price2
+        GROUP BY sp.idSP
+        ORDER BY sp.donGia $sort, tenSP ASC
+        LIMIT $start, $limit";
+
+        return $this->conn->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
 }

@@ -5,17 +5,22 @@ const header = (function () {
   const $ = document.querySelector.bind(document);
   const $$ = document.querySelectorAll.bind(document);
 
-  async function ToggleSearch() {
+  function FeaturedProduct() {
+    setTimeout(() => {
+      const rs = ajax_app.Get("?act=product&handle=featured");
+      rs.then((result) => {
+        $(".search__container .related__product-list").innerHTML =
+          section.renderProducts2(JSON.parse(result));
+      });
+    }, 400);
+  }
+
+  function ToggleSearch() {
     const searchContainer = $(".search__container");
     searchContainer.classList.toggle("active");
 
     if (!searchContainer.classList.contains("active")) return;
-
-    const rs = await ajax_app.Get("?act=product&handle=featured");
-    section.renderProducts2(
-      JSON.parse(rs),
-      $(".search__container .related__product-list")
-    );
+    FeaturedProduct();
   }
 
   // Open/close search container

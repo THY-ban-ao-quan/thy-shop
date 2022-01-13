@@ -3,6 +3,7 @@ import { ajax_app } from "./ajax_app.js";
 import { header } from "./header.js";
 import { section } from "./sections.js";
 import { product } from "./product.js";
+import { filter } from "./filter.js";
 
 const app = (function () {
   function Init() {
@@ -74,17 +75,35 @@ const app = (function () {
     );
 
     // product
-    product.ChangeSize("size__variation", ".detail-layout .size > ul");
+    product.ChangeSize("size__variation", ".detail-layout .sizes > ul");
     product.ChangeColor(
       ".detail-layout .color__variation",
       ".detail-layout .gallery",
       ".detail-layout .color__name",
-      ".detail-layout .size > ul"
+      ".detail-layout .sizes > ul"
     );
     product.Search(
       ".search__container .search__input input",
       ".search__container .related__product-list"
     );
+
+    //filter
+    filter.toggleFilterM(
+      ".mobile-cate-toggle",
+      ".categories-layout .categories__list"
+    );
+    filter.toggleFilterM(
+      ".mobile-filter",
+      ".categories-layout .categories__filter .filter__list"
+    );
+    filter.toggleFilterM(
+      ".categories-layout .filter__list .filter__action button",
+      ".categories-layout .categories__filter .filter__list"
+    );
+    filter.toggleItemFilterPC(".filter__list--wrapper > li > h4");
+    filter.valuePick(".color-list .color");
+    filter.valuePick(".size-list .size");
+    filter.toggleSort();
 
     // const rs = document.querySelectorAll(".product");
     // let raw =

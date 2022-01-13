@@ -17,6 +17,9 @@ switch ($act) {
             case 'detail': 
                 require_once('product/detail.php');
                 break;
+            case 'filter':
+                require_once('product/filter.php');
+                break;
         }
         break;
 }
