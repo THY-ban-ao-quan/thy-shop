@@ -97,7 +97,13 @@
                 
                 switch ($handle) {
                     case 'index':
-                        header("Location: views/cart/cart.php");
+                        if(isset($_SESSION['login']))
+                            header("Location: views/cart/cart.php");
+                        else{
+                            require_once('controllers/accountController.php');
+                            $controller_obj = new AccountController();
+                            $controller_obj->Logout();
+                        }
                         break;
                     case 'add':
                         $controller_obj->add();

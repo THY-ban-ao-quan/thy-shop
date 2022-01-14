@@ -1,11 +1,6 @@
 <?php
     session_start();
-    // if(isset( $_SESSION['giohang'] ) == false)
-    // {
-    //     $_SESSION['giohang'] = array();
-    //     $item = array('idKH' => 1, 'idSM' => 2);
-    //     $_SESSION['giohang'][] = $item;
-    // }
+    
     require_once('../../controllers/CartController.php');
     $controller_obj = new CartController();
     $controller_obj->chon_tatca(0);
@@ -106,7 +101,7 @@
                                                     </div>
                                                     <div class="Ra8lP2">
                                                         <div>
-                                                            <span id="<?php echo "dongia".$id;?>" class="_1CXksa">
+                                                            <span id="<?php echo "dongia".$id;?>" class="_1CXksa" value="<?php echo $row['donGia'];?>">
                                                              <?php echo number_format($row['donGia'], 0, ' ', ',');?> ₫
                                                         </span>
                                                         </div>
@@ -129,7 +124,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="dn3H7Y">
-                                                        <span id="<?php echo "sotien".$id;?>">
+                                                        <span id="<?php echo "sotien".$id;?>" value="<?php echo $row['donGia']*$row['soLuong'];?>">
                                                         <?php echo number_format( $row['donGia']*$row['soLuong'], 0, ' ', ',');?> ₫
                                                     </div>
                                                     <div class="_2y8iJi _2qPRqW">
