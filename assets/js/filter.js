@@ -59,8 +59,6 @@ const filter = (function () {
       productsNode.innerHTML += section.renderProducts2(JSON.parse(rs));
     } else {
       productsNode.innerHTML = section.renderProducts2(JSON.parse(rs));
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
     }
   }
 

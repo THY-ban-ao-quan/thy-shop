@@ -7,10 +7,14 @@ const scrollFilter = (function () {
       const y = window.scrollY;
       setTimeout(() => {
         if (y < window.scrollY) {
-          const currentY =
-              window.scrollY + document.documentElement.clientHeight,
-            docY = document.documentElement.clientHeight,
-            page = Math.floor(currentY / docY);
+          const currentY = window.scrollY + window.innerHeight,
+            docY = window.innerHeight;
+          let page;
+          if (load == 1 && window.innerHeight > window.innerWidth)
+            page = Math.round(0.5 + currentY / docY);
+          else page = Math.round(currentY / docY);
+
+          console.log((currentY / docY).toFixed());
 
           if (page > load) {
             load = page;

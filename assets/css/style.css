@@ -1571,11 +1571,18 @@ h4 {
   margin-bottom: 10px;
 }
 
-@media (max-width: 739px) {
-  .categories .categories__filter .filter__list {
-    width: 100%;
+@media (min-width: 740px) and (max-width: 1023px) {
+  .categories-layout .filter__list--wrapper {
+    height: 320px;
+    max-height: 80vh;
   }
 
+  .categories-layout {
+    margin-bottom: 64px;
+  }
+}
+
+@media (max-width: 739px) {
   .categories-layout {
     grid-gap: 0;
   }
