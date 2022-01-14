@@ -64,12 +64,12 @@ class sanPhamController
 
                 $tenSL = str_replace(" ", "_", $mau) . "_" . $size . "_soLuong";
 
-                if (empty($_POST[$tenSL])) {
+                if (!isset($_POST[$tenSL])) {
                     setcookie('msgsize', 'Vui lòng nhập số lượng', time() + 2);
                     header('Location: ?mod=sanpham&act=add');
                     return;
                 }
-                if (!empty($_POST[$tenSL])) {
+                if (isset($_POST[$tenSL])) {
                     $sl = $_POST[$tenSL];
                 }
 

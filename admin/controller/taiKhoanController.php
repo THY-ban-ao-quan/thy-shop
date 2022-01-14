@@ -104,4 +104,9 @@ class taiKhoanController
         $this->tk_model->isActive($_GET['id']);
         header('Location: ?mod=taikhoan');
     }
+
+    function Logout()
+    {
+        $this->tk_model->Logout();
+    }
 }
