@@ -18,6 +18,8 @@
 
     <!-- Optional Theme stylesheet -->
     <link rel="stylesheet" href="./assets/js/node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+    <link rel="stylesheet" href="./assets/css/stylecart.css">
+    <link rel="stylesheet" href="./assets/css/stylethanhtoan.css">
   </head>
   <body>
     <main id="root" class="home">
