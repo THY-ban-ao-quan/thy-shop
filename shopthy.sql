@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `shopthy`
+-- Database: `shopthy`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -34,7 +34,7 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `banner`
+-- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`id`, `banner`, `trangThai`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `banner` (`id`, `banner`, `trangThai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `blog`
+-- Table structure for table `blog`
 --
 
 CREATE TABLE `blog` (
@@ -58,7 +58,7 @@ CREATE TABLE `blog` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietdonhang`
+-- Table structure for table `chitietdonhang`
 --
 
 CREATE TABLE `chitietdonhang` (
@@ -70,7 +70,7 @@ CREATE TABLE `chitietdonhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietdonhang`
+-- Dumping data for table `chitietdonhang`
 --
 
 INSERT INTO `chitietdonhang` (`idDH`, `idSM`, `soLuong`, `giaBan`, `phanTramKM`) VALUES
@@ -82,7 +82,7 @@ INSERT INTO `chitietdonhang` (`idDH`, `idSM`, `soLuong`, `giaBan`, `phanTramKM`)
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietkhuyenmai`
+-- Table structure for table `chitietkhuyenmai`
 --
 
 CREATE TABLE `chitietkhuyenmai` (
@@ -93,7 +93,7 @@ CREATE TABLE `chitietkhuyenmai` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmuc`
+-- Table structure for table `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -103,7 +103,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmuc`
+-- Dumping data for table `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`idDM`, `tenDM`, `trangThai`) VALUES
@@ -117,7 +117,7 @@ INSERT INTO `danhmuc` (`idDM`, `tenDM`, `trangThai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `donhang`
+-- Table structure for table `donhang`
 --
 
 CREATE TABLE `donhang` (
@@ -128,17 +128,43 @@ CREATE TABLE `donhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `donhang`
+-- Dumping data for table `donhang`
 --
 
 INSERT INTO `donhang` (`idDH`, `idKH`, `ngayDatHang`, `tinhTrang`) VALUES
 (1, 4, '2022-01-06 18:17:04', 1),
-(2, 5, '2022-01-06 18:17:04', 1);
+(2, 5, '2022-01-06 18:17:04', 1),
+(3, 10, '0000-00-00 00:00:00', 1),
+(4, 10, '2022-01-13 19:59:08', 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh`
+-- Table structure for table `giohang`
+--
+
+CREATE TABLE `giohang` (
+  `idKH` int(11) NOT NULL,
+  `idSM` int(11) NOT NULL,
+  `soLuong` int(11) NOT NULL,
+  `ngayThem` date NOT NULL,
+  `chon` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `giohang`
+--
+
+INSERT INTO `giohang` (`idKH`, `idSM`, `soLuong`, `ngayThem`, `chon`) VALUES
+(10, 5, 1, '2022-01-09', 0),
+(10, 13, 1, '2022-01-09', 1),
+(10, 123, 2, '2022-01-07', 0),
+(10, 127, 1, '2022-01-07', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hinhanh`
 --
 
 CREATE TABLE `hinhanh` (
@@ -149,13 +175,20 @@ CREATE TABLE `hinhanh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhanh`
+-- Dumping data for table `hinhanh`
 --
 
 INSERT INTO `hinhanh` (`idAnh`, `linkAnh`, `idSP`, `mau`) VALUES
-(22, 'athur-jacket.jpeg', 41, 'Ghi xám'),
-(23, 'athur-jacket-xam2.jpeg', 41, 'Ghi xám'),
-(24, 'athur-jacket-xam1.jpeg', 41, 'Ghi xám'),
+(15, 'palm.png', 37, 'Trắng'),
+(16, 'kadodoi.jpg', 38, 'Đen');
+(17, 'abc.png', 40, 'Hồng'),
+(18, 'huyen-thoai-ve-cac-chom-sao-267272.jpg', 40, 'Đen'),
+(19, 'huyen-thoai-ve-cac-chom-sao-267272.jpg', 40, 'Trắng'),
+(20, 'c.jpg', 40, 'Đen'),
+(21, 'tempsnip.png', 40, 'Đen'),
+(22, 'athur-jacket.png', 41, 'Ghi xám'),
+(23, 'athur-jacket-xam1.jpeg', 41, 'Ghi xám'),
+(24, 'athur-jacket-xam2.jpeg', 41, 'Ghi xám'),
 (25, 'athur-jacket-xam3.jpeg', 41, 'Ghi xám'),
 (26, 'athur-jacket-xanh-reu-2.jpeg', 41, 'Xanh rêu'),
 (27, 'athur-jacket-xanh-reu.jpeg', 41, 'Xanh rêu'),
@@ -192,7 +225,7 @@ INSERT INTO `hinhanh` (`idAnh`, `linkAnh`, `idSP`, `mau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmai`
+-- Table structure for table `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -204,7 +237,7 @@ CREATE TABLE `khuyenmai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `khuyenmai`
+-- Dumping data for table `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`idKM`, `tenKM`, `ngayBD`, `ngayKT`, `phanTram`) VALUES
@@ -214,7 +247,7 @@ INSERT INTO `khuyenmai` (`idKM`, `tenKM`, `ngayBD`, `ngayKT`, `phanTram`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaisanpham`
+-- Table structure for table `loaisanpham`
 --
 
 CREATE TABLE `loaisanpham` (
@@ -225,7 +258,7 @@ CREATE TABLE `loaisanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `loaisanpham`
+-- Dumping data for table `loaisanpham`
 --
 
 INSERT INTO `loaisanpham` (`idLSP`, `tenLSP`, `trangThai`, `idDM`) VALUES
@@ -242,7 +275,7 @@ INSERT INTO `loaisanpham` (`idLSP`, `tenLSP`, `trangThai`, `idDM`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `mau`
+-- Table structure for table `mau`
 --
 
 CREATE TABLE `mau` (
@@ -250,7 +283,7 @@ CREATE TABLE `mau` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `mau`
+-- Dumping data for table `mau`
 --
 
 INSERT INTO `mau` (`mau`) VALUES
@@ -267,7 +300,7 @@ INSERT INTO `mau` (`mau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -283,7 +316,7 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`idND`, `tenND`, `SDT`, `email`, `diaChi`, `matKhau`, `trangThai`, `idQuyen`, `maPX`) VALUES
@@ -293,13 +326,14 @@ INSERT INTO `nguoidung` (`idND`, `tenND`, `SDT`, `email`, `diaChi`, `matKhau`, `
 (5, 'Đặng Văn Thiện', NULL, 'thiendang201@gmail.com', NULL, '96e79218965eb72c92a549dd5a330112', 1, 3, NULL),
 (7, 'Nguyen Thi Nhu Y', NULL, 'nhuyhe62001@gmail.com', NULL, '202cb962ac59075b964b07152d234b70', 1, 1, NULL),
 (8, 'Nguyen Thi Nhu Y', NULL, 'nhuyhe620011@gmail.com', NULL, '4297f44b13955235245b2497399d7a93', 1, 3, NULL),
+(10, 'Nguyễn Văn Hoàn', '0123456789', 'abc@gmail.com', 'abc', 'abc', 1, 3, NULL),
 (11, 'abc', '1111', 'nhuyhe62001111@gmail.com', 'aaa', 'd9b1d7db4cd6e70935368a1efb10e377', 1, 1, NULL),
 (15, 'aa', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `quyen`
+-- Table structure for table `quyen`
 --
 
 CREATE TABLE `quyen` (
@@ -308,7 +342,7 @@ CREATE TABLE `quyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `quyen`
+-- Dumping data for table `quyen`
 --
 
 INSERT INTO `quyen` (`idQuyen`, `quyen`) VALUES
@@ -319,7 +353,7 @@ INSERT INTO `quyen` (`idQuyen`, `quyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -333,7 +367,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`idSP`, `tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES
@@ -351,7 +385,7 @@ INSERT INTO `sanpham` (`idSP`, `tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `i
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `size`
+-- Table structure for table `size`
 --
 
 CREATE TABLE `size` (
@@ -359,7 +393,7 @@ CREATE TABLE `size` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `size`
+-- Dumping data for table `size`
 --
 
 INSERT INTO `size` (`size`) VALUES
@@ -375,7 +409,7 @@ INSERT INTO `size` (`size`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `size_mau`
+-- Table structure for table `size_mau`
 --
 
 CREATE TABLE `size_mau` (
@@ -388,7 +422,7 @@ CREATE TABLE `size_mau` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `size_mau`
+-- Dumping data for table `size_mau`
 --
 
 INSERT INTO `size_mau` (`idSM`, `idSP`, `size`, `mau`, `soLuong`, `trangThai`) VALUES
@@ -422,234 +456,248 @@ INSERT INTO `size_mau` (`idSM`, `idSP`, `size`, `mau`, `soLuong`, `trangThai`) V
 (152, 48, 30, 'trắng', 45, 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `blog`
+-- Indexes for table `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`idBlog`),
   ADD KEY `nguoiDang` (`idND`);
 
 --
--- Chỉ mục cho bảng `chitietdonhang`
+-- Indexes for table `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD PRIMARY KEY (`idDH`,`idSM`),
   ADD KEY `idSM` (`idSM`);
 
 --
--- Chỉ mục cho bảng `chitietkhuyenmai`
+-- Indexes for table `chitietkhuyenmai`
 --
 ALTER TABLE `chitietkhuyenmai`
   ADD PRIMARY KEY (`idKM`,`idSP`),
   ADD KEY `idSP` (`idSP`);
 
 --
--- Chỉ mục cho bảng `danhmuc`
+-- Indexes for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`idDM`);
 
 --
--- Chỉ mục cho bảng `donhang`
+-- Indexes for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`idDH`),
   ADD KEY `khachhang` (`idKH`);
 
 --
--- Chỉ mục cho bảng `hinhanh`
+-- Indexes for table `giohang`
+--
+ALTER TABLE `giohang`
+  ADD PRIMARY KEY (`idKH`,`idSM`),
+  ADD KEY `giohang_fk_idsm` (`idSM`);
+
+--
+-- Indexes for table `hinhanh`
 --
 ALTER TABLE `hinhanh`
   ADD PRIMARY KEY (`idAnh`),
   ADD KEY `idSM` (`idSP`);
 
 --
--- Chỉ mục cho bảng `khuyenmai`
+-- Indexes for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`idKM`);
 
 --
--- Chỉ mục cho bảng `loaisanpham`
+-- Indexes for table `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
   ADD PRIMARY KEY (`idLSP`),
   ADD KEY `idDM` (`idDM`);
 
 --
--- Chỉ mục cho bảng `mau`
+-- Indexes for table `mau`
 --
 ALTER TABLE `mau`
   ADD PRIMARY KEY (`mau`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`idND`),
   ADD KEY `quyen` (`idQuyen`);
 
 --
--- Chỉ mục cho bảng `quyen`
+-- Indexes for table `quyen`
 --
 ALTER TABLE `quyen`
   ADD PRIMARY KEY (`idQuyen`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`idSP`),
   ADD KEY `idLSP` (`idLSP`);
 
 --
--- Chỉ mục cho bảng `size`
+-- Indexes for table `size`
 --
 ALTER TABLE `size`
   ADD PRIMARY KEY (`size`);
 
 --
--- Chỉ mục cho bảng `size_mau`
+-- Indexes for table `size_mau`
 --
 ALTER TABLE `size_mau`
   ADD PRIMARY KEY (`idSM`),
   ADD KEY `idSP` (`idSP`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `blog`
+-- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
   MODIFY `idBlog` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `danhmuc`
+-- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `idDM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
--- AUTO_INCREMENT cho bảng `donhang`
+-- AUTO_INCREMENT for table `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `idDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `hinhanh`
+-- AUTO_INCREMENT for table `hinhanh`
 --
 ALTER TABLE `hinhanh`
   MODIFY `idAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
--- AUTO_INCREMENT cho bảng `khuyenmai`
+-- AUTO_INCREMENT for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   MODIFY `idKM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `loaisanpham`
+-- AUTO_INCREMENT for table `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
   MODIFY `idLSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `idND` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT cho bảng `quyen`
+-- AUTO_INCREMENT for table `quyen`
 --
 ALTER TABLE `quyen`
   MODIFY `idQuyen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `idSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT cho bảng `size_mau`
+-- AUTO_INCREMENT for table `size_mau`
 --
 ALTER TABLE `size_mau`
   MODIFY `idSM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `banner`
+-- Constraints for table `banner`
 --
 ALTER TABLE `banner`
   ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`id`) REFERENCES `khuyenmai` (`idKM`);
 
 --
--- Các ràng buộc cho bảng `blog`
+-- Constraints for table `blog`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `nguoiDang` FOREIGN KEY (`idND`) REFERENCES `nguoidung` (`idND`);
 
 --
--- Các ràng buộc cho bảng `chitietdonhang`
+-- Constraints for table `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `chitietdonhang_ibfk_1` FOREIGN KEY (`idSM`) REFERENCES `size_mau` (`idSM`),
   ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`idDH`) REFERENCES `donhang` (`idDH`);
 
 --
--- Các ràng buộc cho bảng `chitietkhuyenmai`
+-- Constraints for table `chitietkhuyenmai`
 --
 ALTER TABLE `chitietkhuyenmai`
   ADD CONSTRAINT `chitietkhuyenmai_ibfk_1` FOREIGN KEY (`idKM`) REFERENCES `khuyenmai` (`idKM`),
   ADD CONSTRAINT `chitietkhuyenmai_ibfk_2` FOREIGN KEY (`idSP`) REFERENCES `sanpham` (`idSP`);
 
 --
--- Các ràng buộc cho bảng `donhang`
+-- Constraints for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `khachhang` FOREIGN KEY (`idKH`) REFERENCES `nguoidung` (`idND`);
 
 --
--- Các ràng buộc cho bảng `hinhanh`
+-- Constraints for table `giohang`
+--
+ALTER TABLE `giohang`
+  ADD CONSTRAINT `giohang_fk_idkh` FOREIGN KEY (`idKH`) REFERENCES `nguoidung` (`idND`),
+  ADD CONSTRAINT `giohang_fk_idsm` FOREIGN KEY (`idSM`) REFERENCES `size_mau` (`idSM`);
+
+--
+-- Constraints for table `hinhanh`
 --
 ALTER TABLE `hinhanh`
   ADD CONSTRAINT `hinhanh_ibfk_1` FOREIGN KEY (`idSP`) REFERENCES `sanpham` (`idSP`);
 
 --
--- Các ràng buộc cho bảng `loaisanpham`
+-- Constraints for table `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
   ADD CONSTRAINT `loaisanpham_ibfk_1` FOREIGN KEY (`idDM`) REFERENCES `danhmuc` (`idDM`);
 
 --
--- Các ràng buộc cho bảng `nguoidung`
+-- Constraints for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD CONSTRAINT `quyen` FOREIGN KEY (`idQuyen`) REFERENCES `quyen` (`idQuyen`);
 
 --
--- Các ràng buộc cho bảng `sanpham`
+-- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`idLSP`) REFERENCES `loaisanpham` (`idLSP`);
 
 --
--- Các ràng buộc cho bảng `size_mau`
+-- Constraints for table `size_mau`
 --
 ALTER TABLE `size_mau`
   ADD CONSTRAINT `size_mau_ibfk_1` FOREIGN KEY (`idSP`) REFERENCES `sanpham` (`idSP`);

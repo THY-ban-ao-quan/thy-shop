@@ -22,5 +22,8 @@ switch ($act) {
                 break;
         }
         break;
+    case 'cart':
+        require_once("cart/cart.php");
+        break;
 }
 ?>

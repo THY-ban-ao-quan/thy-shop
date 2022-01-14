@@ -83,6 +83,9 @@
                         $controller_obj->Filter();
                         break;
                 }
-            break;        
+            break;
+            case 'cart':
+                header("Location: views/cart/cart.php");
+                break;        
     }
 ?>
