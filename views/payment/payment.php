@@ -40,7 +40,7 @@
                                     require_once('../../controllers/CartController.php');
                                     $controller_obj = new CartController();
                                     // Dùng id người đăng nhập
-                                    $result = $controller_obj->list_payment(10);
+                                    $result = $controller_obj->list_payment(4);
                                     $tongTienHang = 0;
                                     while($row=mysqli_fetch_array($result)) {
                                         $dongia = $row['donGia'];
@@ -69,9 +69,9 @@
                                                             <div class="_1ASQkt Aw_HtH">
                                                                 <span class="_3y8KEH">Loại: <?php echo $row['size'].", ".$row['mau']?></span>
                                                             </div>
-                                                            <div class="_1ASQkt" value="<?php echo $dongia;?>">₫<?php echo number_format($dongia, 0, ' ', '.');?></div>
+                                                            <div class="_1ASQkt" value="<?php echo $dongia;?>"><?php echo number_format($dongia, 0, ' ', ',');?> ₫</div>
                                                             <div class="_1ASQkt"><?php echo $soluong;?></div>
-                                                            <div class="_1ASQkt _2z5WqO" name='ttien[]' value="<?php echo $thanhtien;?>">₫<?php echo number_format($thanhtien, 0, ' ', '.');?></div>
+                                                            <div class="_1ASQkt _2z5WqO" name='ttien[]' value="<?php echo $thanhtien;?>"><?php echo number_format($thanhtien, 0, ' ', ',');?> ₫</div>
                                                         </div>
                                                     </div>
                                                     
@@ -129,7 +129,7 @@
                                     
                                     <div class="_26DEZ8">Nhận hàng vào 15 Th01 - 18 Th01</div>
                                     <div class="_1OKizE" value="<?php echo $phiVanChuyen;?>">
-                                        ₫<?php echo number_format($phiVanChuyen, 0, ' ', '.');?>
+                                        <?php echo number_format($phiVanChuyen, 0, ' ', ',');?> ₫
                                     </div>
                                 </div>
                             </div>
@@ -149,16 +149,16 @@
                             <div class="PC1-mc">
                                 <div class="_1i3wS2 _1X3--o RihLPS">Tổng tiền hàng</div>
                                 <div class="_1i3wS2 lsNObX RihLPS" value="<?php echo $tongTienHang;?>">
-                                    ₫<?php echo number_format($tongTienHang, 0, ' ', '.');?>
+                                    <?php echo number_format($tongTienHang, 0, ' ', ',');?> ₫
                                 </div>
                                 <div class="_1i3wS2 _1X3--o _1tcGRT">Phí vận chuyển</div>
                                 <div class="_1i3wS2 lsNObX _1tcGRT" value="<?php echo $phiVanChuyen;?>">
-                                    ₫<?php echo number_format($phiVanChuyen, 0, ' ', '.');?>
+                                    <?php echo number_format($phiVanChuyen, 0, ' ', ',');?> ₫
                                 </div>
                                 <div class="_1i3wS2 _1X3--o _31KLpO">Tổng thanh toán:</div>
                                 <?php $tongThanhToan = $tongTienHang+$phiVanChuyen;?>
                                 <div class="_1i3wS2 _20-5lO lsNObX _31KLpO" value="<?php echo $tongThanhToan;?>">
-                                    ₫<?php echo number_format($tongThanhToan, 0, ' ', '.');?>
+                                    <?php echo number_format($tongThanhToan, 0, ' ', ',');?> ₫
                                 </div>
                                 <div class="_3swGZ9">
                                     <div class="RVLKaf">
@@ -166,7 +166,7 @@
                                             
                                         </div>
                                     </div>
-                                    <a class="stardust-button stardust-button--primary stardust-button--large _1qSlAe" href="thanhtoan.php?idkh=10">
+                                    <a class="stardust-button stardust-button--primary stardust-button--large _1qSlAe" href="thanhtoan.php?idkh=<?php echo $_SESSION['login']['idND']?>">
                                         Đặt hàng
                                     </a>
                                 </div>

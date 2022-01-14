@@ -32,17 +32,22 @@ const filter = (function () {
   }
 
   async function productFilter(page = 1, isScroll = false) {
+    const sortNode = select.ele(".sort-list .sort-item.active");
+    const cateNode = select.ele(".categories__info");
+
+    if (!cateNode || !sortNode) return;
+
     const data = {
       colors: getValuePicked(".color-list .color.active"),
       sizes: getValuePicked(".size-list .size.active"),
       price1: $("#slider-range").slider("values", 0),
       price2: $("#slider-range").slider("values", 1),
-      sort: select.ele(".sort-list .sort-item.active").dataset.value,
+      sort: sortNode.dataset.value,
       page: page * 1,
     };
 
-    const idDM = select.ele(".categories__info").dataset.iddm * 1;
-    const idLSP = select.ele(".categories__info").dataset.idlsp * 1;
+    const idDM = cateNode.dataset.iddm;
+    const idLSP = cateNode.dataset.idlsp;
     const productsNode = select.ele(".categories__products");
 
     const rs = await ajax_app.Post(

@@ -14,12 +14,9 @@ const scrollFilter = (function () {
             page = Math.round(0.5 + currentY / docY);
           else page = Math.round(currentY / docY);
 
-          console.log((currentY / docY).toFixed());
-
           if (page > load) {
             load = page;
             filter.productFilter(page, true);
-            console.log(page);
           }
         }
       }, 500);

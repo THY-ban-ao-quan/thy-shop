@@ -6,13 +6,11 @@ const header = (function () {
   const $$ = document.querySelectorAll.bind(document);
 
   function FeaturedProduct() {
-    setTimeout(() => {
-      const rs = ajax_app.Get("?act=product&handle=featured");
-      rs.then((result) => {
-        $(".search__container .related__product-list").innerHTML =
-          section.renderProducts2(JSON.parse(result));
-      });
-    }, 400);
+    const rs = ajax_app.Get("?act=product&handle=featured");
+    rs.then((result) => {
+      $(".search__container .related__product-list").innerHTML =
+        section.renderProducts2(JSON.parse(result));
+    });
   }
 
   function ToggleSearch() {
@@ -37,10 +35,75 @@ const header = (function () {
     });
   }
 
+  function renderItemMiniCart(list) {
+    if (!list) return "";
+
+    let html = "",
+      price,
+      oldprice;
+    list.forEach((item) => {
+      price = item.phanTram
+        ? item.donGia - (item.donGia / 100) * item.phanTram
+        : item.donGia;
+      oldprice = item.phanTram ? numeral(item.donGia).format("0,0") + " ₫" : "";
+      html += `<li>
+                  <div
+                    class="product__thumbnail"
+                    style="
+                      background-image: url(./assets/img/products/${
+                        item.linkAnh
+                      });
+                    "
+                  >
+                  </div>
+                  <div>
+                    <h6>${item.tenSP}</h6>
+                    <span class="product__variation">${item.mau}, ${
+        item.size
+      }</span>
+                    <div>
+                      <strong>${numeral(price).format("0,0")} ₫</strong>
+                      <span class = "old-price" >
+                        ${oldprice}
+                      </span>
+                    </div>
+                    <p class="qty">SL: ${item.soLuong}</p>
+                  </div>
+                </li>`;
+    });
+
+    return html;
+  }
+
+  async function LoadMiniCart(idKH) {
+    const idND = idKH
+      ? idKH
+      : await ajax_app.Get("?act=account&handle=getUserID");
+    const empty = '<h5 class = "qty-0" >Không có sản phẩm nào!</h5>';
+    const listNode = $(".cart__container .mini__cart ul");
+
+    console.log(idND);
+    if (idND != -1) {
+      let listProduct = await ajax_app.Post(
+        "?act=cart&handle=listCart",
+        "idND=" + idND
+      );
+
+      listProduct = JSON.parse(listProduct);
+      console.log(listProduct);
+      listNode.innerHTML =
+        listProduct.length > 0 ? renderItemMiniCart(listProduct) : empty;
+    } else {
+      listNode.innerHTML = empty;
+    }
+  }
+
   //  Open/close mini cart
   function ToggleMiniCart() {
     const miniCart = $(".cart__container");
     miniCart.classList.toggle("active");
+
+    miniCart.classList.contains("active") && LoadMiniCart();
   }
 
   function MiniCartHandle() {
@@ -68,6 +131,7 @@ const header = (function () {
 
   return {
     HeaderHandle,
+    LoadMiniCart,
   };
 })();
 

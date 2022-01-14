@@ -63,12 +63,12 @@
           />
         </svg>
       </div>
-      <script>
+      <!-- <script>
         function chuyenCart(){
           window.location="views/cart/cart.php";
-        }
-      </script>
-      <div id="cart-btn" onclick="chuyenCart();">
+        } onclick="chuyenCart();"
+      </script> -->
+      <div id="cart-btn" >
       
         <svg
           xmlns="http://www.w3.org/2000/svg"

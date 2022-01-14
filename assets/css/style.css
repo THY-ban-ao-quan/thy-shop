@@ -18,6 +18,7 @@
   padding: 0;
 }
 
+body,
 html {
   font-size: 62.5%;
   font-family: "Quicksand", sans-serif;
@@ -499,6 +500,12 @@ h4 {
   border-radius: 0 0 0 4px;
 }
 
+.cart__container .mini__cart .qty {
+  font-size: 1.2rem;
+  opacity: 0.5;
+  font-weight: 700;
+}
+
 .cart__container .mini__cart-header {
   display: flex;
   justify-content: space-between;
@@ -515,7 +522,7 @@ h4 {
 .cart__container .mini__cart ul {
   width: 100%;
   padding: 20px 0;
-  max-height: 40vh;
+  max-height: 56vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -542,11 +549,12 @@ h4 {
 
 .mini__cart ul h6 {
   font-size: 1.4rem;
+  margin-top: -4px;
 }
 
 .mini__cart .product__variation {
-  color: #aeaeae;
-  font-size: 1rem;
+  opacity: 0.5;
+  font-size: 1.2rem;
   display: block;
 }
 
@@ -626,16 +634,31 @@ h4 {
   padding: 10px;
 }
 
-.mini__cart .cart__btn button {
+.old-price {
+  font-size: 1.3rem;
+  opacity: 0.5;
+  font-weight: 500;
+  margin-left: 6px;
+  text-decoration: line-through;
+}
+
+.mini__cart .qty-0 {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 20px 0;
+}
+
+.mini__cart .cart__btn .checkout__btn {
+  display: block;
   box-shadow: 1px 1px 5px #f1f1f1;
   transition: all ease-in-out 0.3s;
-  width: 100%;
-  padding: 10px;
-  border: none;
+  padding: 12px 10px;
   text-transform: uppercase;
   font-weight: 700;
   background-color: #000;
   color: #fff;
+  font-size: 1.4rem;
+  text-align: center;
   border-radius: 4px;
 }
 
@@ -1218,6 +1241,44 @@ h4 {
   cursor: default;
 }
 
+.detail-layout .add-btn-group {
+  position: relative;
+}
+
+.toast-mg {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  width: max-content;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background-color: #fff;
+  box-shadow: 2px 0 6px rgba(120, 146, 184, 0.4);
+  animation: fadeIn 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+
+.toast-mg::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+}
+
+@keyframes fadeIn {
+  to {
+    top: -8px;
+    opacity: 1;
+  }
+}
+
 .detail-layout .add-cart {
   transition: all ease-in-out 0.3s;
   width: 100%;
@@ -1235,6 +1296,13 @@ h4 {
 .detail-layout .add-cart:hover {
   background-color: #fff;
   color: #000;
+}
+
+.detail-layout .add-cart.disabled {
+  color: #a4a4a4;
+  background-color: #e4e4e4;
+  border: none;
+  cursor: default;
 }
 
 @media (max-width: 768px) {

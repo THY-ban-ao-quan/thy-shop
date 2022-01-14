@@ -76,6 +76,7 @@ const app = (function () {
     );
 
     // product
+    product.AddToCart();
     product.ChangeSize("size__variation", ".detail-layout .sizes > ul");
     product.ChangeColor(
       ".detail-layout .color__variation",

@@ -15,139 +15,9 @@
       <h5>Giỏ Hàng</h5>
     </div>
     <ul>
-      <li>
-        <a
-          href="/"
-          class="product__thumbnail"
-          style="
-            background-image: url(https://cdn.ssstutter.com/products/nCRHI1bpbr1ZIsxG/112021/1636362629594_100_125.webp);
-          "
-        >
-        </a>
-        <div>
-          <h6>PRINCE COAT</h6>
-          <span class="product__variation">Be, 1</span>
-          <strong>999.000 ₫</strong>
-          <div class="add__product">
-            <button>-</button>
-            <input type="number" />
-            <button>+</button>
-          </div>
-        </div>
-        <div class="clear__product">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            viewBox="0 0 377.126 377.125"
-          >
-            <g
-              id="Group_35"
-              data-name="Group 35"
-              transform="translate(-4890.35 -7314.312) rotate(-45)"
-            >
-              <g
-                id="Group_33"
-                data-name="Group 33"
-                transform="translate(-1970 8790)"
-              >
-                <g id="Group_27" data-name="Group 27">
-                  <path
-                    id="Path_20"
-                    data-name="Path 20"
-                    d="M501.333,96H10.667a10.667,10.667,0,1,0,0,21.334H501.334a10.667,10.667,0,1,0,0-21.334Z"
-                  ></path>
-                </g>
-              </g>
-              <g
-                id="Group_34"
-                data-name="Group 34"
-                transform="translate(-1724.667 9152.668) rotate(-90)"
-              >
-                <g
-                  id="Group_27-2"
-                  data-name="Group 27"
-                  transform="translate(0 0)"
-                >
-                  <path
-                    id="Path_20-2"
-                    data-name="Path 20"
-                    d="M10.668,117.334H501.334a10.667,10.667,0,1,0,0-21.334H10.667a10.667,10.667,0,1,0,0,21.334Z"
-                    transform="translate(0 -96)"
-                  ></path>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
-      </li>
-
-      <li>
-        <a
-          href="/"
-          class="product__thumbnail"
-          style="
-            background-image: url(https://cdn.ssstutter.com/products/system/102021/1634090901250_100_125.webp);
-          "
-        >
-        </a>
-        <div>
-          <h6>BIG V TEE</h6>
-          <span class="product__variation">Xanh Navy, 1</span>
-          <strong>299.000 ₫</strong>
-          <div class="add__product">
-            <button>-</button>
-            <input type="number" />
-            <button>+</button>
-          </div>
-        </div>
-        <div class="clear__product">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            viewBox="0 0 377.126 377.125"
-          >
-            <g
-              id="Group_35"
-              data-name="Group 35"
-              transform="translate(-4890.35 -7314.312) rotate(-45)"
-            >
-              <g
-                id="Group_33"
-                data-name="Group 33"
-                transform="translate(-1970 8790)"
-              >
-                <g id="Group_27" data-name="Group 27">
-                  <path
-                    id="Path_20"
-                    data-name="Path 20"
-                    d="M501.333,96H10.667a10.667,10.667,0,1,0,0,21.334H501.334a10.667,10.667,0,1,0,0-21.334Z"
-                  ></path>
-                </g>
-              </g>
-              <g
-                id="Group_34"
-                data-name="Group 34"
-                transform="translate(-1724.667 9152.668) rotate(-90)"
-              >
-                <g
-                  id="Group_27-2"
-                  data-name="Group 27"
-                  transform="translate(0 0)"
-                >
-                  <path
-                    id="Path_20-2"
-                    data-name="Path 20"
-                    d="M10.668,117.334H501.334a10.667,10.667,0,1,0,0-21.334H10.667a10.667,10.667,0,1,0,0,21.334Z"
-                    transform="translate(0 -96)"
-                  ></path>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
-      </li>
+      
     </ul>
-    <div class="total__cart">
+    <!-- <div class="total__cart">
       <p>Tổng:</p>
       <strong>-700.000 ₫</strong>
     </div>
@@ -162,9 +32,9 @@
     <div class="total__cart">
       <p>Thành tiền:</p>
       <strong>-700.000 ₫</strong>
-    </div>
+    </div> -->
     <div class="cart__btn">
-      <button class="checkout__btn">thanh toán</button>
+      <a href="?act=cart" class="checkout__btn">Chi tiết giỏ hàng</a>
     </div>
   </div>
 </div>

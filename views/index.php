@@ -8,8 +8,6 @@
     <title>Shop THY</title>      
     <!-- jquery-ui -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <!-- main css -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- box icon -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
@@ -18,8 +16,8 @@
 
     <!-- Optional Theme stylesheet -->
     <link rel="stylesheet" href="./assets/js/node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
-    <link rel="stylesheet" href="./assets/css/stylecart.css">
-    <link rel="stylesheet" href="./assets/css/stylethanhtoan.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <main id="root" class="home">
