@@ -44,6 +44,9 @@
                     case 'update':
                         $controller_obj->Update();
                         break;
+                    case 'getUserID':
+                        $controller_obj->GetUserID();
+                        break;
                     default:
                         header('location: ?act=error');
                         break;
@@ -55,6 +58,9 @@
                         break;
                     case 'register':
                         $controller_obj->Register();
+                        break;
+                    case 'getUserID':
+                        $controller_obj->GetUserID();
                         break;
                 }
             break;
@@ -85,7 +91,22 @@
                 }
             break;
             case 'cart':
-                header("Location: views/cart/cart.php");
+                require_once('controllers/CartController.php');
+                $controller_obj = new CartController();
+                $handle = isset($_GET['handle']) ? $_GET['handle'] : "index";
+                
+                switch ($handle) {
+                    case 'index':
+                        header("Location: views/cart/cart.php");
+                        break;
+                    case 'add':
+                        $controller_obj->add();
+                        break;
+                    case 'listCart':   
+                        $idND = $_POST['idND'];                     
+                        echo json_encode($controller_obj->list_cart($idND)->fetch_all(MYSQLI_ASSOC));
+                        break;
+                }
                 break;        
     }
 ?>

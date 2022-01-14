@@ -42,15 +42,20 @@
                 <p>Chọn size</p>
                 <ul>
                     <?php 
-                        $i = 0;
+                        $qty = 0;
+                        $isSetActive = false;
                         foreach ($sizes as $size) : 
-                            if($size['soLuong'] == 0) $i++;                        
-                            $active = $size == $sizes[$i] ? "active" : "";
-                            $disable = $size['soLuong'] == 0 ? "disabled" : "";
+                            if(!$isSetActive && $size['soLuong'] > 0) {
+                                $active = "active";
+                                $isSetActive = true;
+                            } else
+                                $active = "";
+                            $disable = $size['soLuong'] <= 0 ? "disabled" : "";
+                            $qty += $size['soLuong'];
                     ?> 
                     <li>
                         <button 
-                            class="size__variation <?php echo $active, $disable  ?>" 
+                            class="size__variation <?php echo $active." ". $disable  ?>" 
                             data-idsm="<?php echo $size['idSM'] ?>" 
                             <?php echo $disable ?>
                             ><?php echo $size['size']?>
@@ -59,7 +64,13 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <button class="add-cart">Thêm vào giỏ hàng</button>
+            <div class="add-btn-group">
+                <button 
+                    class="add-cart <?php echo $qty > 0 ? "" : "disabled"?>" 
+                    <?php echo $qty > 0 ? "" : "disabled"?>>
+                    <?php echo $qty > 0 ? "Thêm vào giỏ hàng" : "Hết hàng"?>
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -31,7 +31,7 @@ class DonHangController
     }
     function thanhToan($idKH)
     {
-        $this->donhang_model->addDonHang($idKH, 1);
+        $this->donhang_model->addDonHang($idKH, 0);
         $idDH = $this->donhang_model->getMaDH();
         $result = $this->donhang_model->getGioHang($idKH);
         while($row=mysqli_fetch_array($result)) {

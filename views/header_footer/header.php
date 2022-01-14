@@ -63,12 +63,12 @@
           />
         </svg>
       </div>
-      <script>
+      <!-- <script>
         function chuyenCart(){
           window.location="views/cart/cart.php";
-        }
-      </script>
-      <div id="cart-btn" onclick="chuyenCart();">
+        } onclick="chuyenCart();"
+      </script> -->
+      <div id="cart-btn" >
       
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@
       <?php if(isset($_SESSION['login'])) {?> 
         <a class="" href="/">Thông tin cá nhân</a>
         <?php if(isset($_SESSION['isAdmin']) || isset($_SESSION['isEmployee'])) {?>
-          <a class="" href="/">Trang quản trị</a>
+          <a class="" href="admin">Trang quản trị</a>
         <?php } ?>
         <a class="" href="?act=account&handle=logout">Đăng xuất</a>
       <?php } else { ?> 

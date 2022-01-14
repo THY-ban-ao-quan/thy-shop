@@ -12,15 +12,15 @@
             return;
         }
         sl.value = sluong;
-        var sotiencu = Number(st.innerHTML.slice(1));
+        var sotiencu = Number(st.innerHTML.trim(" ₫"));
         var sotienmoi = dongia * Number(sl.value);
-        st.textContent = "₫"+sotienmoi;
+        st.textContent = numeral(sotienmoi).format("0,0") + ' ₫';;
 
         if(ch.checked){
-            var thanhtien = Number(tt.innerHTML.slice(1));
+            var thanhtien = Number(tt.innerHTML.trim(" ₫"));
             thanhtien = thanhtien - sotiencu + sotienmoi;
             
-            tt.innerHTML = '₫'+thanhtien
+            tt.innerHTML = numeral(thanhtien).format("0,0") + ' ₫';
         }
 
         xml=new XMLHttpRequest();
@@ -45,7 +45,7 @@
                 var idsotien = checkboxes[i].id.replace('check', '');
                 
                 var st=document.getElementById("sotien"+idsotien);
-                thanhtien = thanhtien + Number(st.innerHTML.slice(1));
+                thanhtien = thanhtien + Number(st.innerHTML.trim(" ₫"));
                 sosanpham++;
             }
             url="chontatca.php?chon=1";
@@ -76,8 +76,8 @@
         idKH = ma[0];
         idSM = ma[1];
 
-        var sotien = st.textContent.slice(1);
-        var thanhtien = tt.innerHTML.slice(1);
+        var sotien = st.textContent.trim(" ₫");
+        var thanhtien = tt.innerHTML.trim(" ₫");
         var sosanpham = Number(ssp.getAttribute('value'));
         xml=new XMLHttpRequest();
         if(ch.checked){
@@ -109,8 +109,8 @@
         var ch=document.getElementById("check"+idKH+"."+idSM);
 
         if(ch.checked){
-            var sotien = st.textContent.slice(1);
-            var thanhtien = tt.innerHTML.slice(1);
+            var sotien = st.textContent.trim(" ₫");
+            var thanhtien = tt.innerHTML.trim(" ₫");
             var sosanpham = Number(ssp.getAttribute('value'));
             thanhtien = Number(thanhtien) - Number(sotien);
             sosanpham--;

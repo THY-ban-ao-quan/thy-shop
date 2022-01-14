@@ -1,5 +1,5 @@
 <?php
-require_once("../../models/cart.php");
+require_once(dirname(dirname(__FILE__))."\models\cart.php");
 class CartController
 {
     var $cart_model;
@@ -7,6 +7,12 @@ class CartController
     {
         $this->cart_model = new Cart();
     }
+
+    function add() {
+        $data = json_decode($_POST['data']);
+        echo $this->cart_model->add($data->idSM, $data->idKH);
+    }
+
     function list_cart($id)
     {
         return $this->cart_model->list_cart($id);

@@ -4,6 +4,7 @@ import { header } from "./header.js";
 import { section } from "./sections.js";
 import { product } from "./product.js";
 import { filter } from "./filter.js";
+import { scrollFilter } from "./scrollFilter.js";
 
 const app = (function () {
   function Init() {
@@ -75,6 +76,7 @@ const app = (function () {
     );
 
     // product
+    product.AddToCart();
     product.ChangeSize("size__variation", ".detail-layout .sizes > ul");
     product.ChangeColor(
       ".detail-layout .color__variation",
@@ -104,10 +106,11 @@ const app = (function () {
     filter.valuePick(".color-list .color");
     filter.valuePick(".size-list .size");
     filter.toggleSort();
+    scrollFilter.Scroll();
 
     // const rs = document.querySelectorAll(".product");
     // let raw =
-    //   "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES ('','','','','','')\n";
+    //   "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES \n";
 
     // rs.forEach((item) => {
     //   const name = item.querySelector("h6.name").innerText;
@@ -117,28 +120,10 @@ const app = (function () {
     //     .replace(" ₫", "")
     //     .replace(".", "");
 
-    //   raw += `('${name}','${price}','','','','','')\n`;
+    //   raw += `('${name}','${price}','X','mota','1','1'),\n`;
     // });
 
     // console.log(raw);
-
-    //   const rs = document.querySelectorAll(".product");
-    //   let raw =
-    //     "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES ('','','','','','')\n";
-
-    //   rs.forEach((item) => {
-    //     const name = item.querySelector("h6.name").innerText;
-    //     const price = item
-    //       .querySelector(".price p")
-    //       .innerText.replace(".", "")
-    //       .replace(" ₫", "")
-    //       .replace(".", "");
-    //     const img = item.querySelector(".thumbnail a").innerHTML;
-
-    //     raw += `('${name}','${price}','','','','','${img}'),\n`;
-    //   });
-
-    //   console.log(raw);
   }
   return {
     Init,

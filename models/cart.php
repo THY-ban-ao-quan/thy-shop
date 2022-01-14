@@ -2,6 +2,18 @@
 require_once("model.php");
 class Cart extends Model
 {
+    function add($idSM, $idKH) {
+        $query =  "SELECT * from giohang where idKH = $idKH and idSM = $idSM";
+        $result = $this->conn->query($query)->fetch_assoc();
+
+        $soLuong = $result != null ? ++$result['soLuong'] : 1;
+
+        $insert = "INSERT INTO `giohang`(`idKH`, `idSM`, `soLuong`, `chon`) VALUES($idKH, $idSM, $soLuong, 0)";
+        $update = "UPDATE `giohang` SET `soLuong`= $soLuong WHERE idKH = $idKH and idSM = $idSM";
+
+        return $this->conn->query($result == null ? $insert : $update);
+    }
+
     function detail_sp($id)
     {
         $query =  "SELECT * from SanPham where MaSP = $id ";

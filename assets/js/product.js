@@ -1,5 +1,6 @@
 import { ajax_app } from "./ajax_app.js";
 import { section } from "./sections.js";
+import { header } from "./header.js";
 
 const product = (function () {
   const $ = document.querySelector.bind(document);
@@ -36,16 +37,32 @@ const product = (function () {
     return html;
   }
 
+  function DisabledAddCart(qty) {
+    const button = $(".detail-layout .add-cart");
+    button.disabled = qty > 0 ? false : true;
+    if (qty > 0) {
+      button.classList.remove("disabled");
+      button.innerText = "Thêm vào giỏ hàng";
+    } else {
+      button.classList.add("disabled");
+      button.innerText = "hết hàng";
+    }
+  }
+
   function RenderSizes(list) {
     let html = "",
-      i = 0,
+      qty = 0,
+      isSetActive = false,
       active,
       disable;
     if (!list) return html;
     list.forEach((item) => {
-      item.soLuong == 0 && i++;
-      active = item == list[i] ? "active" : "";
-      disable = item.soLuong == 0 ? "disabled" : "";
+      if (!isSetActive && item.soLuong > 0) {
+        active = "active";
+        isSetActive = true;
+      } else active = "";
+      disable = item.soLuong <= 0 ? "disabled" : "";
+      qty += item.soLuong * 1;
       html += `
         <li>
             <button 
@@ -56,6 +73,9 @@ const product = (function () {
             </button>
         </li>`;
     });
+
+    DisabledAddCart(qty);
+
     return html;
   }
 
@@ -103,6 +123,46 @@ const product = (function () {
     });
   }
 
+  async function AddToCart() {
+    const button = $(".detail-layout .add-cart");
+    if (!button) return;
+
+    button.onclick = async function () {
+      const idND = await ajax_app.Get("?act=account&handle=getUserID");
+      const data = {
+        idSM: $(".size__variation.active").dataset.idsm,
+        idKH: idND,
+      };
+      const node = $(".detail-layout .add-btn-group");
+      const div = document.createElement("div");
+      div.className = "toast-mg";
+
+      if (idND == -1) {
+        div.innerText = "Vui lòng đăng nhập!";
+        node.appendChild(div);
+        setTimeout(() => {
+          div.remove();
+        }, 2500);
+        return;
+      }
+
+      const rs = await ajax_app.Post(
+        "?act=cart&handle=add",
+        "data=" + JSON.stringify(data)
+      );
+
+      if (rs == 1) {
+        div.innerText = "Đã thêm vào giỏ hàng!";
+        node.appendChild(div);
+        setTimeout(() => {
+          div.remove();
+        }, 2500);
+      }
+
+      header.LoadMiniCart(idND);
+    };
+  }
+
   function Search(inputName, listNodeName) {
     const input = $(inputName),
       listNode = $(listNodeName);
@@ -143,6 +203,7 @@ const product = (function () {
   }
 
   return {
+    AddToCart,
     ChangeSize,
     ChangeColor,
     Search,

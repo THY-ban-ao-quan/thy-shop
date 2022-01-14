@@ -33,4 +33,8 @@ class AccountController
     function Logout() {
         $this->account_model->Logout();
     }
+    
+    function GetUserID() {
+        echo isset($_SESSION['login']) ? $_SESSION['login']['idND'] : -1;
+    }
 }

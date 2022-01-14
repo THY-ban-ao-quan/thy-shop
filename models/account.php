@@ -44,7 +44,7 @@ class Account extends Model
             echo json_encode($res);
             return;
         } 
-        if ($login['trangThai'] == 2) {
+        if ($login['trangThai'] == 0) {
             $res->error = "Tài khoản của bản đã bị khóa";
             echo json_encode($res);
             return;

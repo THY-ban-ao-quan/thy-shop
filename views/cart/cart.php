@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     // if(isset( $_SESSION['giohang'] ) == false)
     // {
     //     $_SESSION['giohang'] = array();
@@ -15,7 +15,9 @@
     <head>
         <title>cart</title>
         <meta charset="utf-8">
+        <!-- gio hang css -->
         <link rel="stylesheet" href="../../assets/css/stylecart.css">
+        <link rel="stylesheet" href="../../assets/css/stylethanhtoan.css">
         <?php
             require_once("../../assets/js/actioncart.php");
         ?>
@@ -62,7 +64,7 @@
                                 require_once('../../controllers/CartController.php');
                                 $controller_obj = new CartController();
                                 // Dùng id người đăng nhập
-                                $result = $controller_obj->list_cart(10);
+                                $result = $controller_obj->list_cart($_SESSION['login']['idND']);
                                 while($row=mysqli_fetch_array($result)) { 
                                     $idKH = $row['idKH'];
                                     $idSM = $row['idSM'];
@@ -104,7 +106,9 @@
                                                     </div>
                                                     <div class="Ra8lP2">
                                                         <div>
-                                                            <span id="<?php echo "dongia".$id;?>" class="_1CXksa">₫<?php echo $row['donGia'];?></span>
+                                                            <span id="<?php echo "dongia".$id;?>" class="_1CXksa">
+                                                             <?php echo number_format($row['donGia'], 0, ' ', ',');?> ₫
+                                                        </span>
                                                         </div>
                                                     </div>
                                                     <div class="_2ZUrV7">
@@ -125,7 +129,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="dn3H7Y">
-                                                        <span id="<?php echo "sotien".$id;?>">₫<?php echo $row['donGia']*$row['soLuong'];?></span>
+                                                        <span id="<?php echo "sotien".$id;?>">
+                                                        <?php echo number_format( $row['donGia']*$row['soLuong'], 0, ' ', ',');?> ₫
                                                     </div>
                                                     <div class="_2y8iJi _2qPRqW">
                                                         <button class="RCd1Gx" id="<?php echo "xoa".$id;?>" onclick="xoaSP(<?php echo $row['idKH'].', '.$row['idSM'];?>);">Xóa</button>
@@ -170,7 +175,7 @@
                             <div class="_3BPMNN">
                                 <div class="_2LMWss">
                                     <div class="_10A7e2" id="sosanpham" value="0">Tổng thanh toán (0 Sản phẩm):</div>
-                                    <div class="nBHs8H" id="thanhtien" value="0">₫0</div>
+                                    <div class="nBHs8H" id="thanhtien" value="0">0 ₫</div>
                                 </div>
                             </div>
                             <div class="_1TwgPm"></div>
@@ -184,5 +189,7 @@
             </div>
         
         </div>
+        <!--===== NUMERAL =====-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     </body>
 </html>
