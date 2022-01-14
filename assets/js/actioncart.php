@@ -12,15 +12,16 @@
             return;
         }
         sl.value = sluong;
-        var sotiencu = Number(st.innerHTML.trim(" ₫"));
+        var sotiencu = Number(st.getAttribute('value'));
         var sotienmoi = dongia * Number(sl.value);
         st.textContent = numeral(sotienmoi).format("0,0") + ' ₫';;
-
+        st.setAttribute('value', sotienmoi);
         if(ch.checked){
-            var thanhtien = Number(tt.innerHTML.trim(" ₫"));
+            var thanhtien = Number(tt.getAttribute('value'));
             thanhtien = thanhtien - sotiencu + sotienmoi;
             
             tt.innerHTML = numeral(thanhtien).format("0,0") + ' ₫';
+            tt.setAttribute('value', thanhtien);
         }
 
         xml=new XMLHttpRequest();
@@ -45,7 +46,7 @@
                 var idsotien = checkboxes[i].id.replace('check', '');
                 
                 var st=document.getElementById("sotien"+idsotien);
-                thanhtien = thanhtien + Number(st.innerHTML.trim(" ₫"));
+                thanhtien = thanhtien + Number(st.getAttribute('value'));
                 sosanpham++;
             }
             url="chontatca.php?chon=1";
@@ -62,7 +63,8 @@
         }
         ssp.innerHTML = "Tổng thanh toán (" + sosanpham +" Sản phẩm):";
         ssp.setAttribute('value', sosanpham);
-        tt.innerHTML = '₫'+thanhtien;
+        tt.innerHTML = numeral(thanhtien).format("0,0") + ' ₫';
+        tt.setAttribute('value', thanhtien);
         xml.open("GET", url, "false");
         xml.send();
     }
@@ -76,17 +78,17 @@
         idKH = ma[0];
         idSM = ma[1];
 
-        var sotien = st.textContent.trim(" ₫");
-        var thanhtien = tt.innerHTML.trim(" ₫");
+        var sotien = Number(st.getAttribute('value'));
+        var thanhtien = Number(tt.getAttribute('value'));
         var sosanpham = Number(ssp.getAttribute('value'));
         xml=new XMLHttpRequest();
         if(ch.checked){
-            thanhtien = Number(thanhtien) + Number(sotien);
+            thanhtien = thanhtien + sotien;
             sosanpham++;
             url="chonsp.php?idkh="+idKH+"&idsm="+idSM+"&chon=1";
         }
         else{
-            thanhtien = Number(thanhtien) - Number(sotien);
+            thanhtien = thanhtien - sotien;
             sosanpham--;
             url="chonsp.php?idkh="+idKH+"&idsm="+idSM+"&chon=0";
         }
@@ -94,8 +96,9 @@
         xml.send();
 
         ssp.setAttribute('value', sosanpham);
+        tt.setAttribute('value', thanhtien);
         ssp.innerHTML = "Tổng thanh toán (" + sosanpham +" Sản phẩm):";
-        tt.innerHTML = '₫'+thanhtien;
+        tt.innerHTML = numeral(thanhtien).format("0,0")  + ' ₫';
         ctc=document.getElementById("checktatca");
         ctc.checked = false;
     }
@@ -109,14 +112,15 @@
         var ch=document.getElementById("check"+idKH+"."+idSM);
 
         if(ch.checked){
-            var sotien = st.textContent.trim(" ₫");
-            var thanhtien = tt.innerHTML.trim(" ₫");
+            var sotien = Number(st.getAttribute('value'));
+            var thanhtien = Number(tt.getAttribute('value'));
             var sosanpham = Number(ssp.getAttribute('value'));
             thanhtien = Number(thanhtien) - Number(sotien);
             sosanpham--;
             ssp.setAttribute('value', sosanpham);
             ssp.innerHTML = "Tổng thanh toán (" + sosanpham +" Sản phẩm):";
-            tt.innerHTML = '₫'+thanhtien;
+            tt.innerHTML = numeral(thanhtien).format("0,0") + ' ₫';
+            tt.setAttribute('value', thanhtien);
         }
         
         xml=new XMLHttpRequest();
