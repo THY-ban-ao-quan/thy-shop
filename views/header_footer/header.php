@@ -29,7 +29,7 @@
               <?php echo $item['tenDM'];?>
             </a>
           <?php endforeach; ?> 
-        <a href="/">blog</a>
+        <a href=".">blog</a>
       </div>
     </div>
     <div class="nav__right">
@@ -63,13 +63,7 @@
           />
         </svg>
       </div>
-      <!-- <script>
-        function chuyenCart(){
-          window.location="views/cart/cart.php";
-        } onclick="chuyenCart();"
-      </script> -->
       <div id="cart-btn" >
-      
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -112,13 +106,13 @@
           <?php echo $item['tenDM'];?>
         </a>
       <?php endforeach; ?> 
-      <a class="" href="/">Blog</a>
+      <a href=".">Blog</a>
       <?php if(isset($_SESSION['login'])) {?> 
-        <a class="" href="/">Thông tin cá nhân</a>
+        <a href="?act=account&handle=profile">Thông tin cá nhân</a>
         <?php if(isset($_SESSION['isAdmin']) || isset($_SESSION['isEmployee'])) {?>
-          <a class="" href="admin">Trang quản trị</a>
+          <a href="admin">Trang quản trị</a>
         <?php } ?>
-        <a class="" href="?act=account&handle=logout">Đăng xuất</a>
+        <a href="?act=account&handle=logout">Đăng xuất</a>
       <?php } else { ?> 
         <a class="login-btn" href="/">Đăng nhập</a>
         <a class="register-btn" href="/">Đăng ký</a>

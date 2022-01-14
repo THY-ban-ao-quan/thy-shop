@@ -5,6 +5,7 @@ import { section } from "./sections.js";
 import { product } from "./product.js";
 import { filter } from "./filter.js";
 import { scrollFilter } from "./scrollFilter.js";
+import { profile } from "./profile.js";
 
 const app = (function () {
   function Init() {
@@ -108,22 +109,9 @@ const app = (function () {
     filter.toggleSort();
     scrollFilter.Scroll();
 
-    // const rs = document.querySelectorAll(".product");
-    // let raw =
-    //   "INSERT INTO `sanpham`(`tenSP`, `donGia`, `mua`, `moTa`, `trangThai`, `idLSP`) VALUES \n";
-
-    // rs.forEach((item) => {
-    //   const name = item.querySelector("h6.name").innerText;
-    //   const price = item
-    //     .querySelector(".price p")
-    //     .innerText.replace(".", "")
-    //     .replace(" ₫", "")
-    //     .replace(".", "");
-
-    //   raw += `('${name}','${price}','X','mota','1','1'),\n`;
-    // });
-
-    // console.log(raw);
+    // profile
+    profile.toggleEdit();
+    profile.validForm();
   }
   return {
     Init,

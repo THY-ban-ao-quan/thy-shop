@@ -22,6 +22,9 @@ switch ($act) {
                 break;
         }
         break;
+    case 'account':
+        require_once("user/profile.php");
+        break;
     case 'cart':
         require_once("cart/cart.php");
         break;
