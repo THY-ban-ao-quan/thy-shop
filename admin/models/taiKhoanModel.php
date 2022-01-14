@@ -94,4 +94,17 @@ class taiKhoanModel extends Model
         $sql = "update nguoidung set trangThai = '$tt' where idND = " . $id;
         $this->conn->query($sql);
     }
+
+    function Logout()
+    {
+        if (isset($_SESSION['isAdmin']))
+            unset($_SESSION['isAdmin']);
+        if (isset($_SESSION['isEmployee']))
+            unset($_SESSION['isEmployee']);
+        if (isset($_SESSION['isCustomer']))
+            unset($_SESSION['isCustomer']);
+
+        unset($_SESSION['login']);
+        header('location: ?act=home');
+    }
 }

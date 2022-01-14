@@ -2,6 +2,11 @@
 ob_start();
 
 session_start();
+if (!((isset($_SESSION['isAdmin']) && $_SESSION['isAdmin']) || (isset($_SESSION['isEmployee']) && $_SESSION['isEmployee']))) {
+    // header('Location: http://localhost:8080/thy-shop/');
+    header('Location: ../index.php');
+    return;
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,12 +82,14 @@ session_start();
                 </a>
             </li>
             <!-- list danh mục -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="?mod=taikhoan">
-                    <i class="fas fa-list"></i>
-                    <span>Quản lý Tài khoản</span>
-                </a>
-            </li>
+            <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin']) { ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="?mod=taikhoan">
+                        <i class="fas fa-list"></i>
+                        <span>Quản lý Tài khoản</span>
+                    </a>
+                </li>
+            <?php } ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="?mod=danhmuc">
                     <i class="fas fa-list"></i>
@@ -372,6 +379,9 @@ session_start();
                                             case "isActive":
                                                 $tk_controller->isActive();
                                                 break;
+                                            case "dangxuat":
+                                                $tk_controller->Logout();
+                                                break;
                                             default:
                                                 require_once('./views/taikhoan/taiKhoanView.php');
                                         }
@@ -394,6 +404,9 @@ session_start();
                                                 break;
                                             case "editCSDL":
                                                 $dm_controller->update();
+                                                break;
+                                            case "anhien":
+                                                $dm_controller->AnHien();
                                                 break;
                                             default:
                                                 require_once('./views/danhmuc/danhMucView.php');
@@ -583,7 +596,7 @@ session_start();
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <a class="btn btn-primary" href="?mod=taikhoan&act=dangxuat">Logout</a>
                 </div>
             </div>
         </div>
